@@ -550,7 +550,7 @@ const ENHANCED_CSS = `
 
   /* ── Shimmer Text ── */
   .shimmer-text {
-    background: linear-gradient(90deg, #c9a227 0%, #f5d76e 30%, #fff8e0 45%, #f5d76e 60%, #c9a227 100%);
+    background: linear-gradient(90deg, #c9a227 0%, #c9a227 30%, #000000 45%, #c9a227 60%, #c9a227 100%);
     background-size: 250% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -558,7 +558,7 @@ const ENHANCED_CSS = `
     animation: shimmer 5s linear infinite;
   }
   .shimmer-text-slow {
-    background: linear-gradient(90deg, #c9a227 0%, #e8c84e 40%, #c9a227 100%);
+    background: linear-gradient(90deg, #c9a227 0%, #c9a227 40%, #000000 50%, #c9a227 100%);
     background-size: 300% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
