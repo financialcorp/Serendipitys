@@ -2010,122 +2010,250 @@ function MobileMenu({ setMobileMenuOpen, openAvail }: { setMobileMenuOpen: (o: b
       </div>
     </motion.div>
   );
-}
-
-// ─── Hero ─────────────────────────────────────────────────────────────────────
-function Hero({ heroIdx, setHeroIdx, openAvail, openVideo, openRoute }:
-  { heroIdx: number; setHeroIdx: (i: number) => void; openAvail: () => void; openVideo: () => void; openRoute: () => void }) {
+}// ─── Hero ─────────────────────────────────────────────────────────────────────
+function Hero({
+  heroIdx,
+  setHeroIdx,
+  openAvail,
+  openVideo,
+  openRoute,
+}: {
+  heroIdx: number;
+  setHeroIdx: (i: number) => void;
+  openAvail: () => void;
+  openVideo: () => void;
+  openRoute: () => void;
+}) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const heroRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "28%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
   const videoScale = useTransform(scrollYProgress, [0, 1], [1, 1.18]);
 
-  useEffect(() => { const video = videoRef.current; if (!video) return; video.play().catch(() => {}); }, []);
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.play().catch(() => {});
+  }, []);
 
   const slides: HeroSlide[] = [
-    { line1: "Your Gulf Coast", line2: "Escape Awaits", desc: "Reserve our luxury 94' Lazzara yacht for charter in St Pete / Tampa Bay.", tag: "Saint Petersburg, FL" },
-    { line1: "Experience", line2: "Pure Luxury", desc: "Discover breathtaking views and world-class comfort on Florida's Gulf Coast.", tag: "Tampa Bay, FL" },
-    { line1: "Make Memories", line2: "at Sea", desc: "Unforgettable moments aboard our expertly remodeled luxury yacht.", tag: "Gulf Coast, FL" },
+    {
+      line1: "Your Gulf Coast",
+      line2: "Escape Awaits",
+      desc: "Reserve our luxury 94' Lazzara yacht for charter in St Pete / Tampa Bay.",
+      tag: "Saint Petersburg, FL",
+    },
+    {
+      line1: "Experience",
+      line2: "Pure Luxury",
+      desc: "Discover breathtaking views and world-class comfort on Florida's Gulf Coast.",
+      tag: "Tampa Bay, FL",
+    },
+    {
+      line1: "Make Memories",
+      line2: "at Sea",
+      desc: "Unforgettable moments aboard our expertly remodeled luxury yacht.",
+      tag: "Gulf Coast, FL",
+    },
   ];
 
   return (
     <>
-      <section ref={heroRef} id="home" className="relative h-[51svh] md:h-[100svh] min-h-[320px] overflow-hidden noise-overlay">
+      <section
+        ref={heroRef}
+        id="home"
+        className="relative h-[51svh] md:h-[100svh] min-h-[320px] overflow-hidden noise-overlay"
+        style={{ color: "#fff" }}
+      >
+        {/* VIDEO */}
         <motion.div className="absolute inset-0 z-0" style={{ scale: videoScale }}>
-          <video ref={videoRef} src="/assets/attract_video.mp4" autoPlay muted loop playsInline preload="auto"
-            className="absolute inset-0 w-full h-full object-cover scale-[1.18] md:scale-100"
-            style={{ ...HD_VIDEO_STYLE, filter: "brightness(0.7) contrast(1.06) saturate(1.12)" }} />
+          <video
+            ref={videoRef}
+            src="/assets/attract_video.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{
+              ...HD_VIDEO_STYLE,
+              filter: "brightness(0.7) contrast(1.06) saturate(1.12)",
+            }}
+          />
         </motion.div>
 
-        {/* Cinematic vignette */}
-        <div className="absolute inset-0 z-[1] pointer-events-none" style={{ background: "radial-gradient(ellipse at center, transparent 40%, rgba(4,13,26,0.5) 100%)" }} />
+        {/* VIGNETTE */}
+        <div
+          className="absolute inset-0 z-[1] pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse at center, transparent 40%, rgba(4,13,26,0.5) 100%)",
+          }}
+        />
 
-        <motion.div className="absolute right-3 lg:right-10 bottom-20 lg:bottom-24 z-20 pointer-events-auto"
-          initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1 }}>
-          <div className="relative overflow-hidden rounded-2xl shadow-2xl border border-white/10 group hover:border-gold/30 transition-all duration-500">
-            <motion.img src="/assets/hero3.png" alt="Owner" className="w-[120px] lg:w-[340px] object-cover"
-              animate={{ y: [0, -10, 0] }} transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }} />
+        {/* OWNER IMAGE */}
+        <motion.div
+          className="absolute right-3 lg:right-10 bottom-20 lg:bottom-24 z-20"
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1 }}
+        >
+          <div className="relative overflow-hidden rounded-2xl shadow-2xl border border-white/10">
+            <motion.img
+              src="/assets/hero3.png"
+              alt="Owner"
+              className="w-[120px] lg:w-[340px] object-cover"
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 4.5, repeat: Infinity }}
+            />
           </div>
         </motion.div>
 
         {/* MOBILE */}
-        <motion.div className="lg:hidden relative h-full flex flex-col justify-end z-10" style={{ opacity }}>
+        <motion.div
+          className="lg:hidden relative h-full flex flex-col justify-end z-10"
+          style={{ opacity }}
+        >
           <div className="px-2 pb-0.5">
             <AnimatePresence mode="wait">
-              <motion.div key={heroIdx + "mobile"} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.3 }}>
-                <div className="flex items-center gap-1.5 mb-1"><MapPin className="w-2 h-2 text-gold" /><span className="text-[8px] font-bold tracking-[2px] uppercase text-gold">{slides[heroIdx].tag}</span></div>
-                <h1 className="text-[20px] font-serif leading-[1.02] tracking-tight mb-1">{slides[heroIdx].line1}<br /><em className="text-gold italic font-serif">{slides[heroIdx].line2}</em></h1>
-                <p className="text-[10px] text-white/65 mb-2 leading-snug max-w-[220px]">{slides[heroIdx].desc}</p>
+              <motion.div
+                key={heroIdx + "mobile"}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+              >
+                <div className="flex items-center gap-1.5 mb-1">
+                  <MapPin className="w-2 h-2 text-gold" />
+                  <span className="text-[8px] font-bold tracking-[2px] uppercase text-gold">
+                    {slides[heroIdx].tag}
+                  </span>
+                </div>
+
+                <h1 className="text-[20px] font-serif leading-[1.02] mb-1">
+                  {slides[heroIdx].line1}
+                  <br />
+                  <em className="text-gold italic font-serif">
+                    {slides[heroIdx].line2}
+                  </em>
+                </h1>
+
+                {/* ✅ FIXED COLOR ONLY */}
+                <p
+                  className="text-[10px] mb-2 max-w-[220px]"
+                  style={{ color: "#fff" }}
+                >
+                  {slides[heroIdx].desc}
+                </p>
+
                 <div className="flex gap-2 mb-2">
-                  <a href="/book" className="w-auto px-4 py-1.5 text-black font-bold text-[10px] rounded-full text-center shadow-md whitespace-nowrap" style={{ background: "linear-gradient(135deg, #c9a227, #f0c040)" }}>Book Now</a>
-                  <button onClick={openVideo} className="w-auto px-4 py-1.5 border border-white/30 text-white text-[10px] rounded-full font-bold whitespace-nowrap">Watch Experience</button>
+                  <a
+                    href="/book"
+                    className="px-4 py-1.5 font-bold text-[10px] rounded-full shadow-md"
+                    style={{
+                      background: "linear-gradient(135deg, #c9a227, #f0c040)",
+                      color: "#fff",
+                    }}
+                  >
+                    Book Now
+                  </a>
+
+                  <button
+                    onClick={openVideo}
+                    className="px-4 py-1.5 border border-white/30 text-[10px] rounded-full font-bold"
+                    style={{ color: "#fff" }}
+                  >
+                    Watch Experience
+                  </button>
                 </div>
               </motion.div>
             </AnimatePresence>
           </div>
-          <div className="flex justify-center gap-1.5 pb-3 pt-1">
-            {[0, 1, 2].map((i) => (<motion.button key={i} onClick={() => setHeroIdx(i)} animate={{ width: heroIdx === i ? 16 : 6 }} className={`h-1 rounded-full transition-colors ${heroIdx === i ? "bg-gold" : "bg-white/20"}`} />))}
-          </div>
         </motion.div>
 
         {/* DESKTOP */}
-        <motion.div style={{ y: textY, opacity }} className="hidden lg:flex relative h-full w-[70%] mx-[15%] flex-col justify-end pb-32 z-10">
+        <motion.div
+          style={{ y: textY, opacity }}
+          className="hidden lg:flex relative h-full w-[70%] mx-[15%] flex-col justify-end pb-32 z-10"
+        >
           <AnimatePresence mode="wait">
-            <motion.div key={heroIdx + "desktop"} initial={{ opacity: 0, y: 35 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -18 }}
-              transition={{ duration: 1.5, ease: [0.19, 1, 0.22, 1] }} className="max-w-4xl">
-              <motion.div className="flex items-center gap-3 mb-6" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1, duration: 0.8 }}>
+            <motion.div
+              key={heroIdx + "desktop"}
+              initial={{ opacity: 0, y: 35 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -18 }}
+              transition={{ duration: 1.2 }}
+              className="max-w-4xl"
+            >
+              <motion.div className="flex items-center gap-3 mb-6">
                 <div className="w-8 h-[1px] bg-gold" />
-                <span className="text-xs font-bold tracking-[2.5px] uppercase text-gold">{slides[heroIdx].tag}</span>
+                <span className="text-xs font-bold tracking-[2.5px] uppercase text-gold">
+                  {slides[heroIdx].tag}
+                </span>
               </motion.div>
-              <div style={{ overflow: "hidden" }}>
-                <motion.h1 className="text-[58px] lg:text-[72px] font-serif leading-[1.06] tracking-tight mb-6"
-                  initial={{ y: 80, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.2, duration: 1.2, ease: [0.19, 1, 0.22, 1] }}>
-                  {slides[heroIdx].line1}
-                  <em className="block text-gold italic">{slides[heroIdx].line2}</em>
-                </motion.h1>
-              </div>
-              <motion.p className="text-xl text-white/70 mb-10 leading-relaxed max-w-lg"
-                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35, duration: 1 }}>
+
+              <h1 className="text-[58px] lg:text-[72px] font-serif leading-[1.06] mb-6">
+                {slides[heroIdx].line1}
+                <em className="block text-gold italic">
+                  {slides[heroIdx].line2}
+                </em>
+              </h1>
+
+              {/* ✅ FIXED COLOR ONLY */}
+              <p
+                className="text-xl mb-10 max-w-lg"
+                style={{ color: "#fff" }}
+              >
                 {slides[heroIdx].desc}
-              </motion.p>
-              <motion.div className="flex gap-6 items-center" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 1 }}>
-                <motion.a href="/book" whileHover={{ y: -3, scale: 1.04, boxShadow: "0 16px 40px rgba(201,162,39,0.35)" }} whileTap={{ scale: 0.96 }}
-                  className="gold-shimmer-btn px-10 py-5 rounded-full text-navy font-bold text-base flex items-center gap-2 shadow-xl shadow-gold/25"
-                  style={{ background: "linear-gradient(135deg, #c9a227, #f0c040)" }}>
+              </p>
+
+              <div className="flex gap-6 items-center">
+                <a
+                  href="/book"
+                  className="px-10 py-5 rounded-full font-bold text-base flex items-center gap-2 shadow-xl"
+                  style={{
+                    background: "linear-gradient(135deg, #c9a227, #f0c040)",
+                    color: "#fff",
+                  }}
+                >
                   Book Now <ArrowUpRight className="w-5 h-5" />
-                </motion.a>
-                <motion.button onClick={openVideo} whileHover={{ scale: 1.05 }} className="flex items-center gap-4 text-white hover:text-gold transition-colors">
-                  <motion.div className="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center hover:border-gold/50 transition-all"
-                    whileHover={{ boxShadow: "0 0 24px rgba(201,162,39,0.3)" }}>
+                </a>
+
+                <button
+                  onClick={openVideo}
+                  className="flex items-center gap-4 hover:text-gold transition-colors"
+                  style={{ color: "#fff" }}
+                >
+                  <div className="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center">
                     <Play className="w-5 h-5 fill-current ml-1" />
-                  </motion.div>
-                  <span className="font-bold tracking-widest text-sm uppercase">Watch Experience</span>
-                </motion.button>
-              </motion.div>
+                  </div>
+                  <span className="font-bold tracking-widest text-sm uppercase">
+                    Watch Experience
+                  </span>
+                </button>
+              </div>
             </motion.div>
           </AnimatePresence>
         </motion.div>
-
-        <div className="hidden lg:flex absolute right-16 bottom-40 flex-col gap-3 z-10">
-          {[0, 1, 2].map((i) => (
-            <motion.button key={i} onClick={() => setHeroIdx(i)}
-              animate={{ height: heroIdx === i ? 40 : 10, background: heroIdx === i ? "#c9a227" : "rgba(255,255,255,0.2)" }}
-              whileHover={{ scale: 1.3 }}
-              className="w-2.5 rounded-full" />
-          ))}
-        </div>
       </section>
 
+      {/* MOBILE BOTTOM SECTION */}
       <div className="lg:hidden bg-[#f9edf0] px-2 pt-2 pb-2 space-y-1.5">
         <MobileHeroStats />
-        <MobileQuickActions openAvail={openAvail} openVideo={openVideo} openRoute={openRoute} />
+        <MobileQuickActions
+          openAvail={openAvail}
+          openVideo={openVideo}
+          openRoute={openRoute}
+        />
       </div>
     </>
   );
 }
-
 // ─── Experiences Section ──────────────────────────────────────────────────────
 function ExperiencesSection({
   openExp,
