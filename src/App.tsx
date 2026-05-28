@@ -2533,7 +2533,7 @@ function AccommodationsSection({ openRoom, openGalleryInterior }:
                   <div>
                     <motion.button whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.98 }} onClick={() => setShowBath((prev) => !prev)}
                       className="w-full flex items-center justify-between py-3 px-4 rounded-xl text-xs font-bold uppercase tracking-[2px] transition-all"
-                      style={{ background: showBath ? "rgba(201,162,39,0.08)" : "rgba(255,255,255,0.04)", border: `1px solid ${showBath ? "rgba(201,162,39,0.25)" : "rgba(255,255,255,0.08)"}`, color: showBath ? "#c9a227" : "rgba(255,255,255,0.4)" }}>
+                      style={{ background: showBath ? "rgba(201,162,39,0.08)" : "rgba(201,162,39,0.05)", border: `1px solid ${showBath ? "rgba(201,162,39,0.25)" : "rgba(201,162,39,0.15)"}`, color: "#c9a227" }}>
                       <span className="flex items-center gap-2"><Droplets className="w-3.5 h-3.5" />VIEW ROOM DETAILS</span>
                       <motion.span animate={{ rotate: showBath ? 180 : 0 }} transition={{ duration: 0.3 }}><ChevronDown className="w-4 h-4" /></motion.span>
                     </motion.button>
