@@ -1173,25 +1173,25 @@ function MobileBottomNav({ openAvail }: { openAvail: () => void }) {
   ];
   return (
     <div className="lg:hidden fixed bottom-0 left-0 right-0 z-[999]"
-      style={{ background: "rgba(4, 13, 26, 0.92)", backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)", borderTop: "1px solid rgba(201, 162, 39, 0.15)", paddingBottom: "env(safe-area-inset-bottom)" }}>
-      <div className="flex items-center justify-around px-2 py-2">
+      style={{ background: "rgba(249,237,240,0.95)", backdropFilter: "blur(22px)", WebkitBackdropFilter: "blur(22px)", borderTop: "1px solid rgba(201,162,39,0.16)", paddingBottom: "env(safe-area-inset-bottom)" }}>
+      <div className="flex items-center justify-around px-3 py-3">
         {navItems.map((item) => (
           <a key={item.id} href={item.href} onClick={() => !item.isExternal && setActive(item.id)}
-            className="flex flex-col items-center gap-1 relative group" style={{ minWidth: 56, padding: "4px 8px" }}>
+            className="flex flex-col items-center gap-1 relative group" style={{ minWidth: 60, padding: "6px 10px" }}>
             {item.isPrimary ? (
-              <motion.div whileTap={{ scale: 0.92 }} whileHover={{ scale: 1.08 }}
-                className="w-12 h-12 rounded-2xl flex items-center justify-center shadow-lg"
-                style={{ background: "linear-gradient(135deg, #c9a227, #f0c040)", boxShadow: "0 0 20px rgba(201,162,39,0.45)", marginTop: -20 }}>
-                <item.icon className="w-5 h-5 text-navy" strokeWidth={2.5} />
+              <motion.div whileTap={{ scale: 0.94 }} whileHover={{ scale: 1.05 }}
+                className="w-12 h-12 rounded-[18px] flex items-center justify-center shadow-[0_18px_50px_-20px_rgba(201,162,39,0.8)]"
+                style={{ background: "linear-gradient(135deg, #c9a227, #f2d76f)", marginTop: -18 }}>
+                <item.icon className="w-5 h-5 text-[#040d1a]" strokeWidth={2.5} />
               </motion.div>
             ) : (
-              <motion.div whileTap={{ scale: 0.86 }} className="w-9 h-9 rounded-xl flex items-center justify-center transition-all"
-                style={{ background: active === item.id ? "rgba(201,162,39,0.15)" : "transparent" }}>
-                <item.icon className="w-5 h-5 transition-colors" style={{ color: active === item.id ? "#c9a227" : "rgba(255,255,255,0.4)" }} />
+              <motion.div whileTap={{ scale: 0.88 }} className="w-10 h-10 rounded-2xl flex items-center justify-center transition-all"
+                style={{ background: active === item.id ? "rgba(201,162,39,0.15)" : "rgba(255,255,255,0.75)", border: active === item.id ? "1px solid rgba(201,162,39,0.22)" : "1px solid rgba(255,255,255,0.6)" }}>
+                <item.icon className="w-5 h-5 transition-colors" style={{ color: active === item.id ? "#c9a227" : "rgba(31,26,24,0.45)" }} />
               </motion.div>
             )}
-            <span className="text-[9px] font-bold tracking-wide uppercase transition-colors"
-              style={{ color: item.isPrimary ? "#c9a227" : active === item.id ? "#c9a227" : "rgba(255,255,255,0.3)", marginTop: item.isPrimary ? 2 : 0 }}>
+            <span className="text-[10px] font-semibold tracking-[0.18em] uppercase transition-colors"
+              style={{ color: item.isPrimary ? "#c9a227" : active === item.id ? "#1f1a18" : "rgba(31,26,24,0.45)", marginTop: item.isPrimary ? 2 : 0 }}>
               {item.label}
             </span>
           </a>
