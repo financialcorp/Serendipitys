@@ -28,7 +28,7 @@ const GREEN = "#2e7d32";
 const FONT = '"Fira Sans", "Roboto Condensed", Raleway, sans-serif';
 
 const base: React.CSSProperties = {
-  fontFamily: FONT,
+  fontFamily: '"Fira Sans", "Roboto Condensed", Raleway, sans-serif',
   fontSize: 15,
   color: TEXT_COLOR,
   background: "#f9edf0",
@@ -420,7 +420,7 @@ export default function PaymentPage() {
           </h1>
           <div style={{ textAlign: "center", minWidth: 120 }}>
             <img
-              src="/assets/logo.png"
+              src="/assets/site-logo.png"
               alt="Serendipity"
               style={{ maxHeight: 80, maxWidth: 160, objectFit: "contain" }}
               onError={(e) => { e.currentTarget.style.display = "none"; }}

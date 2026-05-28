@@ -412,7 +412,7 @@ const HERO_VIDEO = "assets/attract_video.mp4";
   return (
     <div
       className="min-h-screen text-[#1f1a18]"
-      style={{ background: "#f9edf0", fontFamily: "serif" }}
+      style={{ background: "#f9edf0", fontFamily: '"Fira Sans", "Roboto Condensed", Raleway, serif' }}
     >
       {/* Fixed bg gradient */}
       <div className="fixed inset-0 pointer-events-none z-0">
@@ -427,7 +427,7 @@ const HERO_VIDEO = "assets/attract_video.mp4";
       >
         <a href="/" className="group">
           <img
-            src="assets/logo.png"
+            src="assets/site-logo.png"
             alt="Serendipity"
             className="h-12 w-auto group-hover:scale-105 transition-transform"
           />
@@ -452,27 +452,18 @@ const HERO_VIDEO = "assets/attract_video.mp4";
       <div className="relative z-10 overflow-hidden">
         <div className="relative h-[280px] md:h-[360px]">
           <video
-  className="absolute inset-0 w-full h-full object-cover object-center"
-  src="assets/attract_video.mp4"
-  autoPlay
-  muted
-  loop
-  playsInline
-/>
-
-<div className="absolute inset-0 bg-white/10" />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(to bottom, rgba(249,237,240,0.55) 0%, rgba(249,237,240,0.25) 40%, rgba(249,237,240,0.95) 100%)",
-            }}
+            className="absolute inset-0 w-full h-full object-cover object-center"
+            src="assets/attract_video.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
           />
           <div
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(to right, rgba(249,237,240,0.8) 0%, transparent 60%)",
+                "linear-gradient(to bottom, rgba(249,237,240,0.35) 0%, rgba(249,237,240,0.15) 50%, rgba(249,237,240,0.7) 100%)",
             }}
           />
 

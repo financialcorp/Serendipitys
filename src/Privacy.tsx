@@ -2,7 +2,7 @@ import React from "react";
 
 const Privacy = () => {
   return (
-    <div style={{ maxWidth: 720, margin: "0 auto", padding: "2rem 1.5rem" }}>
+    <div style={{ maxWidth: 720, margin: "0 auto", padding: "2rem 1.5rem", background: "#f9edf0", minHeight: "100vh", fontFamily: '"Fira Sans", "Roboto Condensed", Raleway, serif', color: "#1f1a18" }}>
 
       <button
         onClick={() => window.history.back()}

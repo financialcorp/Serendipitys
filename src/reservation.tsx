@@ -133,7 +133,7 @@ export default function ReservationPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f9edf0] text-[#1f1a18] font-sans selection:bg-[#c9a227] selection:text-[#040d1a]">
+    <div className="min-h-screen bg-[#f9edf0] text-[#1f1a18]" style={{ fontFamily: '"Fira Sans", "Roboto Condensed", Raleway, serif' }}>
       {/* Background texture */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-[#f9edf0] via-[#f4e9ef] to-[#f9edf0]" />
@@ -144,7 +144,7 @@ export default function ReservationPage() {
       {/* Navbar */}
       <nav className="relative z-50 flex items-center justify-between px-6 md:px-16 py-5 border-b border-white/5 bg-white/80 backdrop-blur-2xl">
         <a href="/" className="flex items-center gap-3 group">
-          <img src="assets/logo.png" alt="Serendipity" className="h-12 w-auto group-hover:scale-105 transition-transform" />
+          <img src="assets/site-logo.png" alt="Serendipity" className="h-12 w-auto group-hover:scale-105 transition-transform" />
         </a>
         <div className="flex items-center gap-4">
           <a href="/" className="flex items-center gap-2 text-white/40 hover:text-white text-sm transition-colors">
@@ -162,19 +162,15 @@ export default function ReservationPage() {
       {/* Hero Banner */}
       <div className="relative z-10 overflow-hidden">
         <div className="relative h-[340px] md:h-[420px]">
-         <video
-  className="absolute inset-0 w-full h-full object-cover object-center"
-  src="assets/attract_video.mp4"
-  autoPlay
-  muted
-  loop
-  playsInline
-/>
-
-          <div className="absolute inset-0 bg-white/20" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#f9edf0]/60 via-[#f9edf0]/20 to-[#f9edf0]" />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#f9edf0]/10 to-[#f9edf0]/70" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#f9edf0]/40 to-transparent" />
+          <video
+            className="absolute inset-0 w-full h-full object-cover object-center"
+            src="assets/attract_video.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#f9edf0]/40 via-transparent to-[#f9edf0]/60" />
 
           {/* Hero Content */}
           <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-16 pb-16">
