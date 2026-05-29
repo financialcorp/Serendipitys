@@ -249,17 +249,17 @@ function RateCard({
           <span className="text-3xl font-serif text-[#c9a227] font-bold">
             {rate.price}
           </span>
-          <span className="text-white/30 text-xs">/ charter</span>
+          <span className="text-[#1f1a18]/40 text-xs">/ charter</span>
         </div>
         <div className="flex flex-wrap gap-2 mb-4">
-          <div className="flex items-center gap-1 text-white/40 text-[10px] bg-white/5 rounded-full px-2.5 py-1 border border-white/8">
+          <div className="flex items-center gap-1 text-[#1f1a18]/55 text-[10px] bg-white/5 rounded-full px-2.5 py-1 border border-[#1f1a18]/10">
             <Clock className="w-3 h-3 text-[#c9a227]/60" /> {rate.duration}
           </div>
-          <div className="flex items-center gap-1 text-white/40 text-[10px] bg-white/5 rounded-full px-2.5 py-1 border border-white/8">
+          <div className="flex items-center gap-1 text-[#1f1a18]/55 text-[10px] bg-white/5 rounded-full px-2.5 py-1 border border-[#1f1a18]/10">
             <Users className="w-3 h-3 text-[#c9a227]/60" /> {rate.guests}
           </div>
           {rate.nights !== "0" && (
-            <div className="flex items-center gap-1 text-white/40 text-[10px] bg-white/5 rounded-full px-2.5 py-1 border border-white/8">
+            <div className="flex items-center gap-1 text-[#1f1a18]/55 text-[10px] bg-white/5 rounded-full px-2.5 py-1 border border-[#1f1a18]/10">
               <Anchor className="w-3 h-3 text-[#c9a227]/60" /> {rate.nights} nights
             </div>
           )}
@@ -286,8 +286,6 @@ function RateCard({
     </motion.div>
   );
 }
-
-// ─── Special Rate Card ────────────────────────────────────────────────────────
 function SpecialRateCard({
   rate,
   selected,
@@ -321,11 +319,11 @@ function SpecialRateCard({
             )}
             <h4 className="font-serif text-sm">{rate.name}</h4>
           </div>
-          <p className="text-[10px] text-white/40 leading-relaxed">{rate.desc}</p>
+          <p className="text-[10px] text-[#1f1a18]/55 leading-relaxed">{rate.desc}</p>
         </div>
         <span
           className={`font-bold font-serif text-base flex-shrink-0 ${
-            selected ? "text-[#c9a227]" : "text-white/60"
+            selected ? "text-[#c9a227]" : "text-[#1f1a18]/65"
           }`}
         >
           {rate.price}
@@ -435,13 +433,13 @@ const HERO_VIDEO = "assets/attract_video.mp4";
         <div className="flex items-center gap-4">
           <a
             href="/"
-            className="flex items-center gap-1.5 text-white/40 hover:text-white text-sm transition-colors"
+            className="flex items-center gap-1.5 text-[#1f1a18]/50 hover:text-[#1f1a18] text-sm transition-colors"
           >
             <ChevronLeft className="w-4 h-4" /> Back to Site
           </a>
           <a
             href="/reservation"
-            className="hidden md:flex items-center gap-1.5 px-4 py-2 rounded-full border border-white/15 text-white/50 text-xs font-bold uppercase tracking-widest hover:border-[#c9a227]/40 hover:text-[#c9a227] transition-all"
+            className="hidden md:flex items-center gap-1.5 px-4 py-2 rounded-full border border-[#1f1a18]/15 text-[#1f1a18]/55 text-xs font-bold uppercase tracking-widest hover:border-[#c9a227]/40 hover:text-[#c9a227] transition-all"
           >
             Inquire Instead
           </a>
@@ -484,7 +482,7 @@ const HERO_VIDEO = "assets/attract_video.mp4";
                 <br />
                 <em className="text-[#c9a227] italic">Experience</em>
               </h1>
-              <p className="text-sm text-white/55 max-w-sm">
+              <p className="text-sm text-[#1f1a18]/70 max-w-sm">
                 Select your package, fill your details, and proceed directly to
                 payment.
               </p>
@@ -507,7 +505,7 @@ const HERO_VIDEO = "assets/attract_video.mp4";
                 <span className="text-sm font-serif text-[#c9a227] font-bold leading-none">
                   {s.val}
                 </span>
-                <span className="text-[8px] uppercase tracking-[1.5px] text-white/35 mt-1">
+                <span className="text-[8px] uppercase tracking-[1.5px] text-[#1f1a18]/50 mt-1">
                   {s.label}
                 </span>
               </div>
@@ -545,7 +543,7 @@ const HERO_VIDEO = "assets/attract_video.mp4";
                 <h2 className="text-2xl md:text-3xl font-serif">
                   Choose Your Package
                 </h2>
-                <p className="text-white/40 text-sm mt-1">
+                <p className="text-[#1f1a18]/55 text-sm mt-1">
                   Select a charter type to continue to booking.
                 </p>
               </div>
@@ -576,13 +574,13 @@ const HERO_VIDEO = "assets/attract_video.mp4";
                       <h3 className="text-base font-serif">
                         Special Events & Occasions
                       </h3>
-                      <p className="text-[10px] text-white/30 mt-0.5">
+                      <p className="text-[10px] text-[#1f1a18]/45 mt-0.5">
                         Corporate, celebrations & culinary
                       </p>
                     </div>
                   </div>
                   <ChevronDown
-                    className={`w-5 h-5 text-white/40 transition-transform duration-300 ${
+                    className={`w-5 h-5 text-[#1f1a18]/50 transition-transform duration-300 ${
                       showSpecial ? "rotate-180" : ""
                     }`}
                   />
@@ -616,16 +614,16 @@ const HERO_VIDEO = "assets/attract_video.mp4";
                 <div>
                   {selected ? (
                     <div>
-                      <p className="text-[10px] text-white/35 uppercase tracking-widest mb-0.5">
+                      <p className="text-[10px] text-[#1f1a18]/45 uppercase tracking-widest mb-0.5">
                         Selected Package
                       </p>
-                      <p className="font-serif text-base">
+                      <p className="font-serif text-base text-[#1f1a18]">
                         {selected.name} —{" "}
                         <span className="text-[#c9a227]">{selected.price}</span>
                       </p>
                     </div>
                   ) : (
-                    <p className="text-white/35 text-sm">
+                    <p className="text-[#1f1a18]/45 text-sm">
                       ← Select a package above to continue
                     </p>
                   )}
@@ -641,7 +639,7 @@ const HERO_VIDEO = "assets/attract_video.mp4";
                 </motion.button>
               </div>
 
-              <p className="text-center text-white/20 text-[10px] mt-4">
+              <p className="text-center text-[#1f1a18]/35 text-[10px] mt-4">
                 * All rates include captain and crew. Fuel, food, and gratuity not
                 included.
               </p>
@@ -671,7 +669,7 @@ const HERO_VIDEO = "assets/attract_video.mp4";
                 </div>
                 <button
                   onClick={() => setStep(0)}
-                  className="flex items-center gap-1.5 text-white/40 hover:text-white text-xs transition-colors mt-1"
+                  className="flex items-center gap-1.5 text-[#1f1a18]/50 hover:text-[#1f1a18] text-xs transition-colors mt-1"
                 >
                   <ChevronLeft className="w-3.5 h-3.5" /> Back
                 </button>
@@ -686,7 +684,7 @@ const HERO_VIDEO = "assets/attract_video.mp4";
                     </div>
                     <div>
                       <p className="text-xs font-bold">{selected.name}</p>
-                      <p className="text-[10px] text-white/40">
+                      <p className="text-[10px] text-[#1f1a18]/50">
                         {(selected as CharterRate).duration || "Custom"} ·{" "}
                         {(selected as CharterRate).guests || "Contact for details"}
                       </p>
@@ -699,137 +697,183 @@ const HERO_VIDEO = "assets/attract_video.mp4";
               )}
 
               <form
-                onSubmit={handleProceedToPayment}
-                className="grid grid-cols-1 md:grid-cols-2 gap-5"
-              >
-                {/* First Name */}
-                <div className="space-y-1.5">
-                  <label className="text-[10px] font-bold tracking-[1.5px] uppercase text-white/30">
-                    First Name <span className="text-[#c9a227]">*</span>
-                  </label>
-                  <input
-                    required
-                    type="text"
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
-                    placeholder="John"
-                    className="w-full bg-white/5 border border-white/10 focus:border-[#c9a227] rounded-xl px-4 py-3.5 text-sm outline-none transition-colors placeholder:text-white/20"
-                    style={{ fontFamily: "sans-serif" }}
-                  />
-                </div>
+  onSubmit={handleProceedToPayment}
+  className="grid grid-cols-1 md:grid-cols-2 gap-5"
+>
+  {/* First Name */}
+  <div className="space-y-1.5">
+    <label className="text-[10px] font-bold tracking-[1.5px] uppercase text-black/70">
+      First Name <span className="text-[#c9a227]">*</span>
+    </label>
 
-                {/* Last Name */}
-                <div className="space-y-1.5">
-                  <label className="text-[10px] font-bold tracking-[1.5px] uppercase text-white/30">
-                    Last Name <span className="text-[#c9a227]">*</span>
-                  </label>
-                  <input
-                    required
-                    type="text"
-                    value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
-                    placeholder="Doe"
-                    className="w-full bg-white/5 border border-white/10 focus:border-[#c9a227] rounded-xl px-4 py-3.5 text-sm outline-none transition-colors placeholder:text-white/20"
-                    style={{ fontFamily: "sans-serif" }}
-                  />
-                </div>
+    <input
+      required
+      type="text"
+      value={firstName}
+      onChange={(e) => setFirstName(e.target.value)}
+      placeholder="John"
+      className="w-full bg-white border border-black/10 focus:border-[#c9a227] rounded-xl px-4 py-3.5 text-sm font-bold text-black outline-none transition-colors placeholder:text-black/40"
+      style={{ fontFamily: "sans-serif" }}
+    />
+  </div>
 
-                {/* Email */}
-                <div className="space-y-1.5">
-                  <label className="text-[10px] font-bold tracking-[1.5px] uppercase text-white/30">
-                    Email Address <span className="text-[#c9a227]">*</span>
-                  </label>
-                  <input
-                    required
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="john@example.com"
-                    className="w-full bg-white/5 border border-white/10 focus:border-[#c9a227] rounded-xl px-4 py-3.5 text-sm outline-none transition-colors placeholder:text-white/20"
-                    style={{ fontFamily: "sans-serif" }}
-                  />
-                </div>
+  {/* Last Name */}
+  <div className="space-y-1.5">
+    <label className="text-[10px] font-bold tracking-[1.5px] uppercase text-black/70">
+      Last Name <span className="text-[#c9a227]">*</span>
+    </label>
 
-                {/* Phone */}
-                <div className="space-y-1.5">
-                  <label className="text-[10px] font-bold tracking-[1.5px] uppercase text-white/30">
-                    Phone Number
-                  </label>
-                  <input
-                    type="tel"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    placeholder="(555) 000-0000"
-                    className="w-full bg-white/5 border border-white/10 focus:border-[#c9a227] rounded-xl px-4 py-3.5 text-sm outline-none transition-colors placeholder:text-white/20"
-                    style={{ fontFamily: "sans-serif" }}
-                  />
-                </div>
+    <input
+      required
+      type="text"
+      value={lastName}
+      onChange={(e) => setLastName(e.target.value)}
+      placeholder="Doe"
+      className="w-full bg-white border border-black/10 focus:border-[#c9a227] rounded-xl px-4 py-3.5 text-sm font-bold text-black outline-none transition-colors placeholder:text-black/40"
+      style={{ fontFamily: "sans-serif" }}
+    />
+  </div>
 
-                {/* Preferred Date */}
-                <div className="space-y-1.5">
-                  <label className="text-[10px] font-bold tracking-[1.5px] uppercase text-white/30">
-                    Preferred Date
-                  </label>
-                  <input
-                    type="date"
-                    value={preferredDate}
-                    onChange={(e) => setPreferredDate(e.target.value)}
-                    className="w-full bg-white/5 border border-white/10 focus:border-[#c9a227] rounded-xl px-4 py-3.5 text-sm outline-none transition-colors text-white/60 [color-scheme:dark]"
-                    style={{ fontFamily: "sans-serif" }}
-                  />
-                </div>
+  {/* Email */}
+  <div className="space-y-1.5">
+    <label className="text-[10px] font-bold tracking-[1.5px] uppercase text-black/70">
+      Email Address <span className="text-[#c9a227]">*</span>
+    </label>
 
-                {/* Guest Count */}
-                <div className="space-y-1.5">
-                  <label className="text-[10px] font-bold tracking-[1.5px] uppercase text-white/30">
-                    Number of Guests
-                  </label>
-                  <select
-                    value={guestCount}
-                    onChange={(e) => setGuestCount(e.target.value)}
-                    className="w-full bg-white/5 border border-white/10 focus:border-[#c9a227] rounded-xl px-4 py-3.5 text-sm outline-none transition-colors appearance-none cursor-pointer text-white/60"
-                    style={{ fontFamily: "sans-serif" }}
-                  >
-                    <option value="" className="bg-white">
-                      Select guests
-                    </option>
-                    {Array.from({ length: 12 }, (_, i) => i + 1).map((n) => (
-                      <option key={n} value={n} className="bg-white">
-                        {n} {n === 1 ? "guest" : "guests"}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+    <input
+      required
+      type="email"
+      value={email}
+      onChange={(e) => setEmail(e.target.value)}
+      placeholder="john@example.com"
+      className="w-full bg-white border border-black/10 focus:border-[#c9a227] rounded-xl px-4 py-3.5 text-sm font-bold text-black outline-none transition-colors placeholder:text-black/40"
+      style={{ fontFamily: "sans-serif" }}
+    />
+  </div>
 
-                {/* Message — full width */}
-                <div className="md:col-span-2 space-y-1.5">
-                  <label className="text-[10px] font-bold tracking-[1.5px] uppercase text-white/30">
-                    Special Requests / Notes
-                  </label>
-                  <textarea
-                    rows={3}
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    placeholder="Dietary needs, special occasions, destination preferences…"
-                    className="w-full bg-white/5 border border-white/10 focus:border-[#c9a227] rounded-xl px-4 py-3.5 text-sm outline-none transition-colors resize-none placeholder:text-white/20"
-                    style={{ fontFamily: "sans-serif" }}
-                  />
-                </div>
+  {/* Phone */}
+  <div className="space-y-1.5">
+    <label className="text-[10px] font-bold tracking-[1.5px] uppercase text-black/70">
+      Phone Number
+    </label>
 
-                {/* Proceed button */}
-                <div className="md:col-span-2 flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
-                  <p className="text-[10px] text-white/25 flex items-center gap-1.5">
-                    <Lock className="w-3 h-3" /> 256-bit SSL secured checkout
-                  </p>
-                  <motion.button
-                    type="submit"
-                    whileTap={{ scale: 0.97 }}
-                    className="flex items-center gap-2 px-8 py-4 bg-[#c9a227] text-[#040d1a] font-bold rounded-xl text-sm transition-all shadow-xl shadow-[#c9a227]/20 hover:translate-y-[-2px]"
-                  >
-                    <CreditCard className="w-4 h-4" /> Review & Pay
-                  </motion.button>
+    <input
+      type="tel"
+      value={phone}
+      onChange={(e) => setPhone(e.target.value)}
+      placeholder="(555) 000-0000"
+      className="w-full bg-white border border-black/10 focus:border-[#c9a227] rounded-xl px-4 py-3.5 text-sm font-bold text-black outline-none transition-colors placeholder:text-black/40"
+      style={{ fontFamily: "sans-serif" }}
+    />
+  </div>
+
+  {/* Preferred Date */}
+  <div className="space-y-1.5">
+    <label className="text-[10px] font-bold tracking-[1.5px] uppercase text-black/70">
+      Preferred Date
+    </label>
+
+    <div className="relative">
+      <input
+        id="preferred-date"
+        type="date"
+        value={preferredDate}
+        onChange={(e) => setPreferredDate(e.target.value)}
+        className="w-full bg-white border border-black/10 focus:border-[#c9a227] rounded-xl px-4 pr-12 py-3.5 text-sm font-bold text-black outline-none transition-colors [color-scheme:light]"
+        style={{ fontFamily: "sans-serif" }}
+      />
+
+      <button
+        type="button"
+        onClick={() => {
+          const input = document.getElementById(
+            "preferred-date"
+          ) as HTMLInputElement;
+
+          if (input?.showPicker) {
+            input.showPicker();
+          } else {
+            input?.focus();
+            input?.click();
+          }
+        }}
+        className="absolute right-4 top-1/2 -translate-y-1/2 text-[#c9a227] hover:scale-110 transition-transform"
+      >
+        <Calendar className="w-4 h-4" />
+      </button>
+    </div>
+  </div>
+
+  {/* Guest Count */}
+  <div className="space-y-1.5">
+    <label className="text-[10px] font-bold tracking-[1.5px] uppercase text-black/70">
+      Number of Guests
+    </label>
+
+    <select
+      value={guestCount}
+      onChange={(e) => setGuestCount(e.target.value)}
+      className="w-full bg-white border border-black/10 focus:border-[#c9a227] rounded-xl px-4 py-3.5 text-sm font-bold text-black outline-none transition-colors appearance-none cursor-pointer"
+      style={{ fontFamily: "sans-serif" }}
+    >
+      <option value="">Select guests</option>
+
+      {Array.from({ length: 12 }, (_, i) => i + 1).map((n) => (
+        <option key={n} value={n}>
+          {n} {n === 1 ? "guest" : "guests"}
+        </option>
+      ))}
+    </select>
+  </div>
+
+  {/* Message */}
+  <div className="md:col-span-2 space-y-1.5">
+    <label className="text-[10px] font-bold tracking-[1.5px] uppercase text-black/70">
+      Special Requests / Notes
+    </label>
+
+    <textarea
+      rows={3}
+      value={message}
+      onChange={(e) => setMessage(e.target.value)}
+      placeholder="Dietary needs, special occasions, destination preferences…"
+      className="w-full bg-white border border-black/10 focus:border-[#c9a227] rounded-xl px-4 py-3.5 text-sm font-bold text-black outline-none transition-colors resize-none placeholder:text-black/40"
+      style={{ fontFamily: "sans-serif" }}
+    />
+  </div>
+</form>
+
+              {/* Step 1 → Step 2 CTA */}
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-5 rounded-2xl border border-[#1f1a18]/12 bg-[#1f1a18]/3 mt-6">
+                <div>
+                  {selected ? (
+                    <div>
+                      <p className="text-[10px] text-[#1f1a18]/50 uppercase tracking-widest mb-0.5">
+                        Selected Package
+                      </p>
+                      <p className="font-serif text-base text-[#1f1a18]">
+                        {selected.name} —{" "}
+                        <span className="text-[#c9a227]">{selected.price}</span>
+                      </p>
+                    </div>
+                  ) : (
+                    <p className="text-[#1f1a18]/50 text-sm">Fill in your details to continue</p>
+                  )}
                 </div>
-              </form>
+                <motion.button
+                  whileTap={{ scale: 0.97 }}
+                  onClick={(e) => {
+                    const form = document.querySelector("form");
+                    if (form && form.reportValidity()) {
+                      handleProceedToPayment(e as unknown as React.FormEvent);
+                    }
+                  }}
+                  disabled={!firstName || !lastName || !email}
+                  className="flex items-center gap-2 px-8 py-4 bg-[#c9a227] text-[#040d1a] font-bold rounded-xl text-sm transition-all shadow-xl shadow-[#c9a227]/20 disabled:opacity-30 disabled:cursor-not-allowed hover:translate-y-[-2px] active:scale-95"
+                >
+                  Continue to Review <ArrowUpRight className="w-4 h-4" />
+                </motion.button>
+              </div>
             </motion.div>
           )}
 
@@ -856,7 +900,7 @@ const HERO_VIDEO = "assets/attract_video.mp4";
                 </div>
                 <button
                   onClick={() => setStep(1)}
-                  className="flex items-center gap-1.5 text-white/40 hover:text-white text-xs transition-colors mt-1"
+                  className="flex items-center gap-1.5 text-[#1f1a18]/50 hover:text-[#1f1a18] text-xs transition-colors mt-1"
                 >
                   <ChevronLeft className="w-3.5 h-3.5" /> Back
                 </button>
@@ -865,7 +909,7 @@ const HERO_VIDEO = "assets/attract_video.mp4";
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Order Summary */}
                 <div className="space-y-4">
-                  <h3 className="text-sm font-bold uppercase tracking-widest text-white/40">
+                  <h3 className="text-sm font-bold uppercase tracking-widest text-[#1f1a18]/50">
                     Order Summary
                   </h3>
 
@@ -877,7 +921,7 @@ const HERO_VIDEO = "assets/attract_video.mp4";
                       </div>
                       <div>
                         <p className="font-bold text-sm">{selected?.name}</p>
-                        <p className="text-[10px] text-white/35">
+                        <p className="text-[10px] text-[#1f1a18]/45">
                           Serendipity — 94' Lazzara
                         </p>
                       </div>
@@ -909,9 +953,9 @@ const HERO_VIDEO = "assets/attract_video.mp4";
                       },
                     ].map((row, i) => (
                       <div key={i} className="flex justify-between text-xs">
-                        <span className="text-white/35">{row.label}</span>
+                        <span className="text-[#1f1a18]/45">{row.label}</span>
                         <span
-                          className="text-white/70 text-right max-w-[60%] truncate"
+                          className="text-[#1f1a18]/75 text-right max-w-[60%] truncate"
                           style={{ fontFamily: "sans-serif" }}
                         >
                           {row.value}
@@ -923,12 +967,12 @@ const HERO_VIDEO = "assets/attract_video.mp4";
                   {/* Price breakdown */}
                   <div className="p-5 rounded-2xl border border-[#c9a227]/20 bg-[#c9a227]/5 space-y-3">
                     <div className="flex justify-between text-sm">
-                      <span className="text-white/50">Charter Base Rate</span>
+                      <span className="text-[#1f1a18]/55">Charter Base Rate</span>
                       <span className="font-bold">{selected?.price}</span>
                     </div>
                     <div className="flex justify-between text-xs">
-                      <span className="text-white/30">CC Surcharge (2.5%)</span>
-                      <span className="text-white/40">
+                      <span className="text-[#1f1a18]/40">CC Surcharge (2.5%)</span>
+                      <span className="text-[#1f1a18]/50">
                         {selected?.numPrice
                           ? `+$${(selected.numPrice * 0.025).toLocaleString(
                               "en-US",
@@ -938,7 +982,7 @@ const HERO_VIDEO = "assets/attract_video.mp4";
                       </span>
                     </div>
                     <div className="pt-2 border-t border-[#c9a227]/20 flex justify-between">
-                      <span className="text-white/60 text-sm font-bold">
+                      <span className="text-[#1f1a18]/65 text-sm font-bold">
                         Total (with CC)
                       </span>
                       <span className="text-[#c9a227] font-bold font-serif text-xl">
@@ -950,7 +994,7 @@ const HERO_VIDEO = "assets/attract_video.mp4";
                           : selected?.price}
                       </span>
                     </div>
-                    <p className="text-[9px] text-white/25">
+                    <p className="text-[9px] text-[#1f1a18]/35">
                       No surcharge for ACH (eCheck) payments — save{" "}
                       {selected?.numPrice
                         ? `$${(selected.numPrice * 0.025).toLocaleString()}`
@@ -962,14 +1006,14 @@ const HERO_VIDEO = "assets/attract_video.mp4";
                   {"highlights" in (selected ?? {}) &&
                     (selected as CharterRate).highlights?.length > 0 && (
                       <div className="p-4 rounded-2xl border border-white/8 bg-white/3">
-                        <p className="text-[10px] font-bold uppercase tracking-widest text-white/30 mb-2.5">
+                        <p className="text-[10px] font-bold uppercase tracking-widest text-[#1f1a18]/40 mb-2.5">
                           Included
                         </p>
                         <div className="space-y-2">
                           {(selected as CharterRate).highlights.map((h, i) => (
                             <div key={i} className="flex items-center gap-2">
                               <Check className="w-3.5 h-3.5 text-[#c9a227] flex-shrink-0" />
-                              <span className="text-xs text-white/50">{h}</span>
+                              <span className="text-xs text-[#1f1a18]/55">{h}</span>
                             </div>
                           ))}
                         </div>
@@ -979,12 +1023,12 @@ const HERO_VIDEO = "assets/attract_video.mp4";
 
                 {/* Payment CTA */}
                 <div className="space-y-4">
-                  <h3 className="text-sm font-bold uppercase tracking-widest text-white/40">
+                  <h3 className="text-sm font-bold uppercase tracking-widest text-[#1f1a18]/50">
                     Payment
                   </h3>
 
                   <div className="p-5 rounded-2xl border border-white/10 bg-white/3 space-y-4">
-                    <p className="text-sm text-white/60 leading-relaxed">
+                    <p className="text-sm text-[#1f1a18]/60 leading-relaxed">
                       You'll be directed to our secure payment page where you
                       can pay by credit card or ACH (eCheck). ACH has no
                       surcharge.
@@ -997,7 +1041,7 @@ const HERO_VIDEO = "assets/attract_video.mp4";
                         "Credit card & ACH accepted",
                         "Confirmation within 24 hours",
                       ].map((item, i) => (
-                        <div key={i} className="flex items-center gap-2 text-xs text-white/40">
+                        <div key={i} className="flex items-center gap-2 text-xs text-[#1f1a18]/50">
                           <Shield className="w-3.5 h-3.5 text-[#c9a227]/60 flex-shrink-0" />
                           {item}
                         </div>
@@ -1031,7 +1075,7 @@ const HERO_VIDEO = "assets/attract_video.mp4";
                       )}
                     </motion.button>
 
-                    <p className="text-center text-[9px] text-white/20 flex items-center justify-center gap-1.5">
+                    <p className="text-center text-[9px] text-[#1f1a18]/30 flex items-center justify-center gap-1.5">
                       <Lock className="w-3 h-3" /> Secured by 256-bit SSL
                       encryption
                     </p>
@@ -1039,20 +1083,20 @@ const HERO_VIDEO = "assets/attract_video.mp4";
 
                   {/* Contact */}
                   <div className="p-4 rounded-2xl border border-white/8 bg-white/3">
-                    <p className="text-[10px] text-white/25 uppercase tracking-widest mb-3 font-bold">
+                    <p className="text-[10px] text-[#1f1a18]/35 uppercase tracking-widest mb-3 font-bold">
                       Questions? Call Us
                     </p>
                     <div className="flex flex-col gap-2">
                       <a
                         href="tel:4124182968"
-                        className="flex items-center gap-2 text-sm text-white/45 hover:text-[#c9a227] transition-colors"
+                        className="flex items-center gap-2 text-sm text-[#1f1a18]/55 hover:text-[#c9a227] transition-colors"
                       >
                         <Phone className="w-3.5 h-3.5 text-[#c9a227]/60" />{" "}
                         Capt. Jake: 412-418-2968
                       </a>
                       <a
                         href="tel:7276449653"
-                        className="flex items-center gap-2 text-sm text-white/45 hover:text-[#c9a227] transition-colors"
+                        className="flex items-center gap-2 text-sm text-[#1f1a18]/55 hover:text-[#c9a227] transition-colors"
                       >
                         <Phone className="w-3.5 h-3.5 text-[#c9a227]/60" />{" "}
                         Manager Bryon: 727-644-9653
@@ -1061,10 +1105,10 @@ const HERO_VIDEO = "assets/attract_video.mp4";
                   </div>
 
                   <div className="p-4 rounded-2xl border border-white/8 bg-white/3">
-                    <p className="text-[10px] text-white/25 uppercase tracking-widest mb-2 font-bold">
+                    <p className="text-[10px] text-[#1f1a18]/35 uppercase tracking-widest mb-2 font-bold">
                       Location
                     </p>
-                    <div className="flex items-start gap-2 text-xs text-white/40">
+                    <div className="flex items-start gap-2 text-xs text-[#1f1a18]/55">
                       <MapPin className="w-3.5 h-3.5 text-[#c9a227]/60 mt-0.5 flex-shrink-0" />
                       <span>
                         <a href="https://maps.google.com/?q=Maximo+Marina,+St+Petersburg,+FL" target="_blank" rel="noopener noreferrer" className="hover:text-[#c9a227] transition-colors">Maximo Marina</a>, 3701 50 Ave S.
@@ -1085,7 +1129,7 @@ const HERO_VIDEO = "assets/attract_video.mp4";
         className="relative z-10 border-t border-white/5 py-8 px-6 md:px-16 mt-10"
         style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 2rem)" }}
       >
-        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-[10px] text-white/20 uppercase tracking-widest">
+        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-[10px] text-[#1f1a18]/35 uppercase tracking-widest">
           <p>© 2025 Serendipity Yacht Charter. All Rights Reserved.</p>
           <div className="flex gap-5">
             <a href="/reservation" className="hover:text-[#c9a227] transition-colors">
