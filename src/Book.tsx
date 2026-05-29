@@ -1,31 +1,16 @@
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
- * Book.tsx — Serendipity Yacht Charter Booking Page
- * "Book Now" flow → this page → Payment.tsx
+ * Book.tsx — Serendipity Yacht Charter (Enhanced)
  */
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import {
-  ChevronLeft,
-  ArrowUpRight,
-  Check,
-  Clock,
-  Users,
-  Anchor,
-  Star,
-  MapPin,
-  Phone,
-  Lock,
-  CreditCard,
-  Ship,
-  Utensils,
-  Wifi,
-  Shield,
-  ChevronDown,
-  DollarSign,
-  Calendar,
+  ChevronLeft, ArrowUpRight, Check, Clock, Users,
+  Anchor, Star, MapPin, Phone, Lock, CreditCard,
+  Ship, Utensils, Shield, ChevronDown, Calendar,
+  Waves, Wind,
 } from "lucide-react";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -40,6 +25,7 @@ interface CharterRate {
   highlights: string[];
   popular?: boolean;
   tag?: string;
+  emoji?: string;
 }
 
 // ─── Constants ────────────────────────────────────────────────────────────────
@@ -53,11 +39,12 @@ const CHARTER_RATES: CharterRate[] = [
     nights: "0",
     guests: "Up to 12",
     tag: "Most Flexible",
+    emoji: "☀️",
     highlights: [
       "2 Jet Skis included",
       "16' Nautica RIB tender",
       "Local beaches & islands",
-      "Restaurant stops",
+      "Restaurant stops available",
     ],
   },
   {
@@ -70,10 +57,11 @@ const CHARTER_RATES: CharterRate[] = [
     guests: "Up to 8",
     popular: true,
     tag: "Most Popular",
+    emoji: "🌅",
     highlights: [
       "3 days / 2 nights",
       "4 private staterooms",
-      "Sarasota to Tarpon Springs range",
+      "Sarasota to Tarpon Springs",
       "Full crew included",
     ],
   },
@@ -86,10 +74,11 @@ const CHARTER_RATES: CharterRate[] = [
     nights: "6",
     guests: "Up to 8",
     tag: "Best Value",
+    emoji: "⚓",
     highlights: [
       "7 days / 6 nights",
       "4 private staterooms",
-      "Key West to Destin FL range",
+      "Key West to Destin range",
       "Full crew & private chef",
     ],
   },
@@ -101,6 +90,7 @@ const SPECIAL_RATES = [
     name: "Corporate Events",
     price: "$15,000",
     numPrice: 15000,
+    emoji: "🏢",
     desc: "Up to 25 guests for cocktails & hors d'oeuvres. 6-hour cruise with waterfront restaurant catering.",
   },
   {
@@ -108,20 +98,23 @@ const SPECIAL_RATES = [
     name: "Birthdays & Anniversaries",
     price: "$7,500",
     numPrice: 7500,
-    desc: "Up to 10 guests for 6-hour sunset cruise. Themed décor, cocktails & culinary choices.",
+    emoji: "🎉",
+    desc: "Up to 10 guests for a 6-hour sunset cruise with themed décor, cocktails & culinary choices.",
   },
   {
     id: "culinary",
     name: "Culinary & Wine Events",
     price: "$7,500",
     numPrice: 7500,
+    emoji: "🍷",
     desc: "Private chef-prepared meal for up to 8 guests on a 6-hour dinner cruise.",
   },
   {
     id: "sunset",
-    name: "Sunset Cruise (Custom)",
+    name: "Sunset Cruise",
     price: "Custom",
     numPrice: 0,
+    emoji: "🌇",
     desc: "Tailored pricing for a romantic sunset on the Gulf Coast. Contact us for details.",
   },
 ];
@@ -133,57 +126,82 @@ const VESSEL_STATS = [
   { val: "5.0★", label: "Rating" },
 ];
 
-
-
 // ─── Helpers ──────────────────────────────────────────────────────────────────
-function navigateToPayment(data: {
-  name: string;
-  email: string;
-  eventType: string;
-  amount: string;
-}) {
-  const params = new URLSearchParams({
-    name: data.name,
-    email: data.email,
-    eventType: data.eventType,
-    amount: data.amount,
-  });
+function navigateToPayment(data: { name: string; email: string; eventType: string; amount: string }) {
+  const params = new URLSearchParams(data);
   window.location.href = `/payment?${params.toString()}`;
+}
+
+// ─── Ocean Background ─────────────────────────────────────────────────────────
+function OceanBackground() {
+  return (
+    <div style={{ position: "fixed", inset: 0, pointerEvents: "none", zIndex: 0, overflow: "hidden" }}>
+      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(160deg, #fdf6ec 0%, #fef9e7 35%, #fdf2d0 70%, #fef5d4 100%)" }} />
+      <motion.div
+        animate={{ x: [0, 50, 0], y: [0, -40, 0] }}
+        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+        style={{
+          position: "absolute", top: "-20%", right: "-15%",
+          width: 800, height: 800,
+          borderRadius: "60% 40% 70% 30% / 40% 60% 30% 70%",
+          background: "radial-gradient(circle, rgba(201,162,39,0.06) 0%, transparent 70%)",
+          filter: "blur(50px)"
+        }}
+      />
+      <motion.div
+        animate={{ x: [0, -30, 0], y: [0, 50, 0] }}
+        transition={{ duration: 26, repeat: Infinity, ease: "easeInOut", delay: 5 }}
+        style={{
+          position: "absolute", bottom: "-15%", left: "-10%",
+          width: 700, height: 700,
+          borderRadius: "40% 60% 30% 70%",
+          background: "radial-gradient(circle, rgba(201,162,39,0.05) 0%, transparent 70%)",
+          filter: "blur(60px)"
+        }}
+      />
+      <div style={{
+        position: "absolute", inset: 0,
+        backgroundImage: `linear-gradient(rgba(201,162,39,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(201,162,39,0.025) 1px, transparent 1px)`,
+        backgroundSize: "72px 72px"
+      }} />
+    </div>
+  );
 }
 
 // ─── Step Indicator ───────────────────────────────────────────────────────────
 function StepIndicator({ step }: { step: number }) {
   const steps = ["Select Package", "Your Details", "Confirm & Pay"];
   return (
-    <div className="flex items-center gap-0 mb-8">
+    <div style={{ display: "flex", alignItems: "center", marginBottom: 40 }}>
       {steps.map((s, i) => (
         <React.Fragment key={i}>
-          <div className="flex flex-col items-center">
-            <div
-              className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-500 ${
-                i < step
-                  ? "bg-[#c9a227] text-[#040d1a]"
-                  : i === step
-                  ? "bg-[#c9a227]/20 border-2 border-[#c9a227] text-[#c9a227]"
-                  : "bg-white/5 border border-white/15 text-white/25"
-              }`}
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <motion.div
+              animate={{
+                background: i < step ? "linear-gradient(135deg, #c9a227, #e0bb4a)" : i === step ? "transparent" : "rgba(201,162,39,0.06)",
+                borderColor: i <= step ? "#c9a227" : "rgba(201,162,39,0.15)",
+              }}
+              style={{
+                width: 38, height: 38, borderRadius: "50%",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                border: "2px solid",
+                fontSize: 12, fontWeight: 800, color: i < step ? "#5a3a00" : i === step ? "#c9a227" : "#b8a660",
+              }}
             >
-              {i < step ? <Check className="w-4 h-4" /> : i + 1}
-            </div>
-            <span
-              className={`text-[8px] font-bold uppercase tracking-wider mt-1.5 whitespace-nowrap ${
-                i <= step ? "text-[#c9a227]" : "text-white/20"
-              }`}
-            >
+              {i < step ? <Check size={16} style={{ color: "#5a3a00" }} /> : i + 1}
+            </motion.div>
+            <span style={{
+              fontSize: 8, fontWeight: 800, letterSpacing: "1.2px", textTransform: "uppercase",
+              marginTop: 6, whiteSpace: "nowrap",
+              color: i <= step ? "#c9a227" : "#b8a660"
+            }}>
               {s}
             </span>
           </div>
           {i < steps.length - 1 && (
-            <div
-              className={`flex-1 h-[1px] mx-2 transition-all duration-700 ${
-                i < step ? "bg-[#c9a227]" : "bg-white/10"
-              }`}
-              style={{ minWidth: 20 }}
+            <motion.div
+              animate={{ background: i < step ? "linear-gradient(90deg, #c9a227, #c9a227)" : "rgba(201,162,39,0.1)" }}
+              style={{ flex: 1, height: 2, margin: "0 10px", marginTop: -16, borderRadius: 2, transition: "background 0.5s" }}
             />
           )}
         </React.Fragment>
@@ -193,92 +211,101 @@ function StepIndicator({ step }: { step: number }) {
 }
 
 // ─── Rate Card ────────────────────────────────────────────────────────────────
-function RateCard({
-  rate,
-  selected,
-  onSelect,
-}: {
-  rate: CharterRate;
-  selected: boolean;
-  onSelect: () => void;
-}) {
+function RateCard({ rate, selected, onSelect }: { rate: CharterRate; selected: boolean; onSelect: () => void }) {
   return (
     <motion.div
-      whileHover={{ y: -4 }}
-      whileTap={{ scale: 0.98 }}
       onClick={onSelect}
-      className={`relative rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 ${
-        selected
-          ? "border-2 border-[#c9a227] shadow-2xl shadow-[#c9a227]/20"
-          : "border border-white/10 hover:border-white/25"
-      }`}
+      whileHover={{ y: -8, boxShadow: selected ? "0 25px 70px rgba(201,162,39,0.2)" : "0 15px 50px rgba(90,58,0,0.1)" }}
+      whileTap={{ scale: 0.98 }}
       style={{
+        position: "relative", borderRadius: 24, overflow: "hidden", cursor: "pointer",
         background: selected
-          ? "linear-gradient(145deg, rgba(201,162,39,0.12) 0%, rgba(249,237,240,0.95) 100%)"
-          : "rgba(255,255,255,0.04)",
+          ? "linear-gradient(135deg, rgba(201,162,39,0.08) 0%, rgba(255,255,255,0.97) 100%)"
+          : "rgba(255,255,255,0.7)",
+        border: selected ? "2.5px solid #c9a227" : "1.5px solid rgba(201,162,39,0.1)",
+        backdropFilter: "blur(16px)",
+        boxShadow: selected ? "0 20px 60px rgba(201,162,39,0.15)" : "0 4px 20px rgba(90,58,0,0.05)",
+        transition: "border 0.3s, box-shadow 0.3s",
       }}
     >
+      {/* Popular Banner */}
       {rate.popular && (
-        <div className="absolute top-0 left-0 right-0 flex justify-center">
-          <span className="text-[9px] font-bold uppercase tracking-widest px-5 py-1.5 rounded-b-xl bg-[#c9a227] text-[#040d1a]">
-            Most Popular
-          </span>
+        <div style={{
+          position: "absolute", top: 0, left: 0, right: 0,
+          background: "linear-gradient(90deg, #5a3a00, #c9a227)",
+          textAlign: "center", padding: "7px 0",
+          fontSize: 9, fontWeight: 800, letterSpacing: "2px",
+          textTransform: "uppercase", color: "white",
+        }}>
+          ⭐ Most Popular
         </div>
       )}
+
       {!rate.popular && rate.tag && (
-        <div className="absolute top-4 right-4">
-          <span className="text-[8px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full bg-white/8 border border-white/15 text-white/40">
-            {rate.tag}
-          </span>
+        <div style={{
+          position: "absolute", top: 14, right: 14,
+          fontSize: 8, fontWeight: 800, letterSpacing: "1px", textTransform: "uppercase",
+          padding: "4px 10px", borderRadius: 20,
+          background: "rgba(201,162,39,0.07)", border: "1px solid rgba(201,162,39,0.15)",
+          color: "#c9a227"
+        }}>
+          {rate.tag}
         </div>
       )}
-      <div className={`p-6 ${rate.popular ? "pt-10" : ""}`}>
-        <div className="flex items-center justify-between mb-1">
-          <h3 className="font-serif text-lg">{rate.name}</h3>
-          {selected && (
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              className="w-6 h-6 rounded-full bg-[#c9a227] flex items-center justify-center"
-            >
-              <Check className="w-3.5 h-3.5 text-[#040d1a]" />
-            </motion.div>
-          )}
-        </div>
-        <div className="flex items-baseline gap-1 mb-4">
-          <span className="text-3xl font-serif text-[#c9a227] font-bold">
-            {rate.price}
-          </span>
-          <span className="text-[#1f1a18]/40 text-xs">/ charter</span>
-        </div>
-        <div className="flex flex-wrap gap-2 mb-4">
-          <div className="flex items-center gap-1 text-[#1f1a18]/55 text-[10px] bg-white/5 rounded-full px-2.5 py-1 border border-[#1f1a18]/10">
-            <Clock className="w-3 h-3 text-[#c9a227]/60" /> {rate.duration}
+
+      <div style={{ padding: "28px 24px", paddingTop: rate.popular ? 44 : 28 }}>
+        {/* Emoji + Name */}
+        <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
+          <span style={{ fontSize: 28 }}>{rate.emoji}</span>
+          <div>
+            <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 20, fontWeight: 800, color: "#5a3a00", lineHeight: 1.1 }}>
+              {rate.name}
+            </h3>
+            {selected && (
+              <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ fontSize: 10, color: "#c9a227", fontWeight: 700 }}>
+                ✓ Selected
+              </motion.span>
+            )}
           </div>
-          <div className="flex items-center gap-1 text-[#1f1a18]/55 text-[10px] bg-white/5 rounded-full px-2.5 py-1 border border-[#1f1a18]/10">
-            <Users className="w-3 h-3 text-[#c9a227]/60" /> {rate.guests}
-          </div>
-          {rate.nights !== "0" && (
-            <div className="flex items-center gap-1 text-[#1f1a18]/55 text-[10px] bg-white/5 rounded-full px-2.5 py-1 border border-[#1f1a18]/10">
-              <Anchor className="w-3 h-3 text-[#c9a227]/60" /> {rate.nights} nights
+        </div>
+
+        {/* Price */}
+        <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 16 }}>
+          <span style={{ fontFamily: "'Playfair Display', serif", fontSize: 32, fontWeight: 800, color: "#c9a227" }}>{rate.price}</span>
+          <span style={{ fontSize: 11, color: "#b8a660" }}>/charter</span>
+        </div>
+
+        {/* Meta Chips */}
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 18 }}>
+          {[
+            { icon: <Clock size={10} />, text: rate.duration },
+            { icon: <Users size={10} />, text: rate.guests },
+            ...(rate.nights !== "0" ? [{ icon: <Anchor size={10} />, text: `${rate.nights} nights` }] : []),
+          ].map((chip, i) => (
+            <div key={i} style={{
+              display: "flex", alignItems: "center", gap: 5,
+              padding: "5px 10px", borderRadius: 20, fontSize: 10,
+              background: selected ? "rgba(201,162,39,0.08)" : "rgba(90,58,0,0.05)",
+              color: selected ? "#c9a227" : "#7a6230", fontWeight: 600,
+              border: `1px solid ${selected ? "rgba(201,162,39,0.15)" : "rgba(90,58,0,0.06)"}`,
+            }}>
+              {chip.icon} {chip.text}
             </div>
-          )}
+          ))}
         </div>
-        <div className="space-y-2">
+
+        {/* Highlights */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
           {rate.highlights.map((h, j) => (
-            <div key={j} className="flex items-center gap-2">
-              <div
-                className={`w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 transition-colors ${
-                  selected ? "bg-[#c9a227]/20" : "bg-white/8"
-                }`}
-              >
-                <Check
-                  className={`w-2.5 h-2.5 ${
-                    selected ? "text-[#c9a227]" : "text-white/30"
-                  }`}
-                />
+            <div key={j} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <div style={{
+                width: 18, height: 18, borderRadius: 6,
+                background: selected ? "rgba(201,162,39,0.12)" : "rgba(90,58,0,0.05)",
+                display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0
+              }}>
+                <Check size={10} style={{ color: selected ? "#c9a227" : "#b8a660" }} />
               </div>
-              <span className="text-xs text-white/50">{h}</span>
+              <span style={{ fontSize: 11, color: "#7a6230" }}>{h}</span>
             </div>
           ))}
         </div>
@@ -286,50 +313,74 @@ function RateCard({
     </motion.div>
   );
 }
-function SpecialRateCard({
-  rate,
-  selected,
-  onSelect,
-}: {
-  rate: (typeof SPECIAL_RATES)[0];
-  selected: boolean;
-  onSelect: () => void;
-}) {
+
+// ─── Special Rate Card ────────────────────────────────────────────────────────
+function SpecialRateCard({ rate, selected, onSelect }: { rate: typeof SPECIAL_RATES[0]; selected: boolean; onSelect: () => void }) {
   return (
     <motion.div
-      whileTap={{ scale: 0.98 }}
       onClick={onSelect}
-      className={`p-4 rounded-2xl cursor-pointer transition-all duration-300 ${
-        selected
-          ? "border-2 border-[#c9a227] bg-[#c9a227]/8 shadow-lg shadow-[#c9a227]/10"
-          : "border border-white/8 bg-white/3 hover:border-white/20"
-      }`}
+      whileTap={{ scale: 0.98 }}
+      whileHover={{ x: 4 }}
+      style={{
+        padding: "16px 18px", borderRadius: 16, cursor: "pointer",
+        background: selected ? "rgba(201,162,39,0.06)" : "rgba(255,255,255,0.5)",
+        border: selected ? "2px solid rgba(201,162,39,0.3)" : "1.5px solid rgba(201,162,39,0.08)",
+        transition: "all 0.25s ease",
+        backdropFilter: "blur(10px)",
+      }}
     >
-      <div className="flex items-start justify-between gap-3">
-        <div className="flex-1">
-          <div className="flex items-center gap-2 mb-1">
-            {selected && (
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                className="w-4 h-4 rounded-full bg-[#c9a227] flex items-center justify-center flex-shrink-0"
-              >
-                <Check className="w-2.5 h-2.5 text-[#040d1a]" />
-              </motion.div>
-            )}
-            <h4 className="font-serif text-sm">{rate.name}</h4>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12 }}>
+        <div style={{ display: "flex", alignItems: "flex-start", gap: 12, flex: 1 }}>
+          <span style={{ fontSize: 22, lineHeight: 1.2, flexShrink: 0 }}>{rate.emoji}</span>
+          <div>
+            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
+              {selected && (
+                <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }}
+                  style={{ width: 16, height: 16, borderRadius: 5, background: "#c9a227", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <Check size={9} style={{ color: "white" }} />
+                </motion.div>
+              )}
+              <h4 style={{ fontFamily: "'Playfair Display', serif", fontSize: 14, fontWeight: 700, color: "#5a3a00" }}>{rate.name}</h4>
+            </div>
+            <p style={{ fontSize: 10, color: "#8a7840", lineHeight: 1.6 }}>{rate.desc}</p>
           </div>
-          <p className="text-[10px] text-[#1f1a18]/55 leading-relaxed">{rate.desc}</p>
         </div>
-        <span
-          className={`font-bold font-serif text-base flex-shrink-0 ${
-            selected ? "text-[#c9a227]" : "text-[#1f1a18]/65"
-          }`}
-        >
+        <span style={{
+          fontFamily: "'Playfair Display', serif", fontSize: 18, fontWeight: 800,
+          color: selected ? "#c9a227" : "#c9a227", flexShrink: 0
+        }}>
           {rate.price}
         </span>
       </div>
     </motion.div>
+  );
+}
+
+// ─── Input Style Helper ───────────────────────────────────────────────────────
+function useInputStyle(focused: string | null) {
+  return (fieldName: string): React.CSSProperties => ({
+    width: "100%",
+    background: focused === fieldName ? "white" : "rgba(255,255,255,0.8)",
+    border: focused === fieldName ? "2px solid #c9a227" : "1.5px solid rgba(201,162,39,0.15)",
+    borderRadius: 12, padding: "12px 16px", fontSize: 13,
+    color: "#5a3a00", outline: "none", transition: "all 0.2s ease",
+    fontFamily: "'DM Sans', sans-serif", boxSizing: "border-box",
+    boxShadow: focused === fieldName ? "0 0 0 4px rgba(201,162,39,0.08)" : "none",
+  });
+}
+
+const labelStyle: React.CSSProperties = {
+  fontSize: 9, fontWeight: 800, letterSpacing: "1.5px",
+  textTransform: "uppercase", color: "#7a6230", display: "block", marginBottom: 6,
+};
+
+// ─── Section Label ────────────────────────────────────────────────────────────
+function SectionLabel({ text }: { text: string }) {
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 6 }}>
+      <div style={{ width: 24, height: 2, background: "linear-gradient(90deg, #c9a227, transparent)", borderRadius: 2 }} />
+      <span style={{ fontSize: 9, fontWeight: 800, letterSpacing: "2.5px", textTransform: "uppercase", color: "#c9a227" }}>{text}</span>
+    </div>
   );
 }
 
@@ -339,9 +390,8 @@ export default function BookPage() {
   const [preselectedNote, setPreselectedNote] = useState<string | null>(null);
   const [selectedRateId, setSelectedRateId] = useState<string | null>(null);
   const [showSpecial, setShowSpecial] = useState(false);
+  const [focusedField, setFocusedField] = useState<string | null>(null);
 
-
-  // Step 2 fields
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -351,35 +401,23 @@ export default function BookPage() {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
-
+  const inputStyle = useInputStyle(focusedField);
 
   const allRates = [
     ...CHARTER_RATES.map((r) => ({ ...r, isSpecial: false })),
     ...SPECIAL_RATES.map((r) => ({
-      ...r,
-      isSpecial: true,
-      duration: "",
-      nights: "0",
-      guests: "",
-      highlights: [],
+      ...r, isSpecial: true, duration: "", nights: "0", guests: "", highlights: [],
     })),
   ];
-const HERO_VIDEO = "assets/attract_video.mp4";
-  const selected =
-    allRates.find((r) => r.id === selectedRateId) ?? null;
 
-  const selectedPrice =
-    selected && selected.price !== "Custom" ? selected.price : "";
+  const selected = allRates.find((r) => r.id === selectedRateId) ?? null;
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const dest = params.get("destination");
     const route = params.get("route");
-    if (dest) {
-      setPreselectedNote(`Added to charter: ${dest}`);
-    } else if (route) {
-      setPreselectedNote(`Selected route: ${route}`);
-    }
+    if (dest) setPreselectedNote(`Added to charter: ${dest}`);
+    else if (route) setPreselectedNote(`Selected route: ${route}`);
   }, []);
 
   const handleProceedToDetails = () => {
@@ -399,209 +437,191 @@ const HERO_VIDEO = "assets/attract_video.mp4";
     setTimeout(() => {
       setLoading(false);
       navigateToPayment({
-        name: `${firstName} ${lastName}`,
-        email,
+        name: `${firstName} ${lastName}`, email,
         eventType: selected?.name ?? "Charter",
-        amount: selected?.numPrice ? String(selected.numPrice) : "0",
+        amount: (selected as CharterRate)?.numPrice ? String((selected as CharterRate).numPrice) : "0",
       });
-    }, 600);
+    }, 800);
   };
 
   return (
-    <div
-      className="min-h-screen text-[#1f1a18]"
-      style={{ background: "#f9edf0", fontFamily: '"Fira Sans", "Roboto Condensed", Raleway, serif' }}
-    >
-      {/* Fixed bg gradient */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute top-0 right-0 w-[700px] h-[700px] rounded-full blur-[180px]" style={{ background: "radial-gradient(circle, rgba(201,162,39,0.06) 0%, transparent 70%)" }} />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full blur-[150px]" style={{ background: "radial-gradient(circle, rgba(59,130,246,0.04) 0%, transparent 70%)" }} />
-      </div>
+    <div style={{ minHeight: "100vh", fontFamily: "'DM Sans', sans-serif", color: "#5a3a00", position: "relative" }}>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,400;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+        * { box-sizing: border-box; }
+        input::placeholder, textarea::placeholder { color: #b8a660; }
+        select option { color: #5a3a00; background: white; }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-thumb { background: rgba(201,162,39,0.2); border-radius: 10px; }
+        input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(0.5) sepia(1) saturate(4) hue-rotate(5deg); cursor: pointer; }
+      `}</style>
 
-      {/* Navbar */}
-      <nav
-        className="relative z-50 flex items-center justify-between px-6 md:px-16 py-4 border-b border-[#1f1a18]/10"
-        style={{ background: "rgba(249,237,240,0.95)", backdropFilter: "blur(24px)" }}
-      >
-        <a href="/" className="group">
-          <img
-            src="assets/site-logo.png"
-            alt="Serendipity"
-            className="h-12 w-auto group-hover:scale-105 transition-transform"
-          />
+      <OceanBackground />
+
+      {/* ── NAVBAR ── */}
+      <nav style={{
+        position: "relative", zIndex: 50, display: "flex", alignItems: "center",
+        justifyContent: "space-between", padding: "14px 40px",
+        background: "rgba(255,255,255,0.88)", backdropFilter: "blur(24px)",
+        borderBottom: "1px solid rgba(201,162,39,0.08)",
+      }}>
+        <a href="/" style={{ textDecoration: "none" }}>
+          <img src="assets/site-logo.png" alt="Serendipity" style={{ height: 42, width: "auto" }} />
         </a>
-        <div className="flex items-center gap-4">
-          <a
-            href="/"
-            className="flex items-center gap-1.5 text-[#1f1a18]/50 hover:text-[#1f1a18] text-sm transition-colors"
-          >
-            <ChevronLeft className="w-4 h-4" /> Back to Site
+        <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+          <a href="/" style={{ display: "flex", alignItems: "center", gap: 5, fontSize: 13, color: "#8a7840", textDecoration: "none", fontWeight: 500 }}>
+            <ChevronLeft size={14} /> Back to Site
           </a>
-          <a
-            href="/reservation"
-            className="hidden md:flex items-center gap-1.5 px-4 py-2 rounded-full border border-[#1f1a18]/15 text-[#1f1a18]/55 text-xs font-bold uppercase tracking-widest hover:border-[#c9a227]/40 hover:text-[#c9a227] transition-all"
-          >
+          <a href="/reservation" style={{
+            padding: "8px 18px", borderRadius: 50,
+            border: "1.5px solid rgba(201,162,39,0.2)", color: "#c9a227",
+            fontSize: 11, fontWeight: 800, textDecoration: "none", letterSpacing: "0.5px",
+            textTransform: "uppercase", transition: "all 0.2s",
+          }}>
             Inquire Instead
           </a>
         </div>
       </nav>
 
-      {/* Hero */}
-      <div className="relative z-10 overflow-hidden">
-        <div className="relative h-[280px] md:h-[360px]">
+      {/* ── HERO ── */}
+      <div style={{ position: "relative", zIndex: 10, overflow: "hidden" }}>
+        <div style={{ position: "relative", height: 360 }}>
           <video
-            className="absolute inset-0 w-full h-full object-cover object-center"
-            src="assets/attract_video.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+            src="assets/attract_video.mp4" autoPlay muted loop playsInline
           />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(to bottom, rgba(249,237,240,0.35) 0%, rgba(249,237,240,0.15) 50%, rgba(249,237,240,0.7) 100%)",
-            }}
-          />
+          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(90,58,0,0.3) 0%, rgba(90,58,0,0.5) 50%, rgba(240,247,255,0.85) 100%)" }} />
 
-          <div className="absolute inset-0 flex flex-col justify-end px-6 md:px-16 pb-14">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-            >
-              <div className="flex items-center gap-2 mb-3">
-                <div className="w-8 h-[1px] bg-[#c9a227]" />
-                <span className="text-[9px] font-bold tracking-[3px] uppercase text-[#c9a227]">
+          {/* Hero Content */}
+          <div style={{ position: "absolute", bottom: 80, left: 48 }}>
+            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.8 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10 }}>
+                <div style={{ width: 28, height: 1.5, background: "#c9a227" }} />
+                <span style={{ fontSize: 9, fontWeight: 800, letterSpacing: "3px", textTransform: "uppercase", color: "#f0c94a" }}>
                   Saint Petersburg, FL
                 </span>
               </div>
-              <h1 className="text-3xl md:text-5xl font-serif leading-tight mb-2">
-                Book Your Charter
-                <br />
-                <em className="text-[#c9a227] italic">Experience</em>
+              <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: 50, fontWeight: 800, lineHeight: 1.1, color: "white", marginBottom: 10 }}>
+                Book Your Charter<br />
+                <em style={{ color: "#f0c94a", fontStyle: "italic" }}>Experience</em>
               </h1>
-              <p className="text-sm text-[#1f1a18]/70 max-w-sm">
-                Select your package, fill your details, and proceed directly to
-                payment.
+              <p style={{ fontSize: 13, color: "rgba(255,255,255,0.7)", maxWidth: 360, lineHeight: 1.7 }}>
+                Select your package, fill your details, and proceed to secure payment.
               </p>
             </motion.div>
           </div>
 
-          {/* Vessel stats */}
-          <div className="absolute bottom-4 right-6 md:right-16 flex items-center gap-0 bg-white/70 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden">
+          {/* Vessel Stats */}
+          <div style={{
+            position: "absolute", bottom: 24, right: 40,
+            display: "flex", gap: 0,
+            background: "rgba(255,255,255,0.88)", backdropFilter: "blur(20px)",
+            borderRadius: 16, overflow: "hidden",
+            border: "1px solid rgba(255,255,255,0.5)",
+            boxShadow: "0 8px 30px rgba(90,58,0,0.12)",
+          }}>
             {VESSEL_STATS.map((s, i) => (
-              <div
-                key={i}
-                className="flex flex-col items-center px-4 py-2.5"
-                style={{
-                  borderRight:
-                    i < VESSEL_STATS.length - 1
-                      ? "1px solid rgba(255,255,255,0.08)"
-                      : "none",
-                }}
-              >
-                <span className="text-sm font-serif text-[#c9a227] font-bold leading-none">
-                  {s.val}
-                </span>
-                <span className="text-[8px] uppercase tracking-[1.5px] text-[#1f1a18]/50 mt-1">
-                  {s.label}
-                </span>
+              <div key={i} style={{
+                display: "flex", flexDirection: "column", alignItems: "center",
+                padding: "12px 20px",
+                borderRight: i < VESSEL_STATS.length - 1 ? "1px solid rgba(201,162,39,0.08)" : "none",
+              }}>
+                <span style={{ fontFamily: "'Playfair Display', serif", fontSize: 16, fontWeight: 800, color: "#c9a227" }}>{s.val}</span>
+                <span style={{ fontSize: 8, textTransform: "uppercase", letterSpacing: "1.2px", color: "#8a7840", marginTop: 2, fontWeight: 700 }}>{s.label}</span>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-4 md:px-8 py-10 md:py-14">
+      {/* ── MAIN CONTENT ── */}
+      <div style={{ position: "relative", zIndex: 10, maxWidth: 900, margin: "0 auto", padding: "50px 28px 80px" }}>
+
         {preselectedNote && (
-          <div className="mb-4 p-3 rounded-lg bg-white/5 border border-white/8 text-sm text-white/80">
-            {preselectedNote}
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}
+            style={{
+              marginBottom: 20, padding: "12px 18px", borderRadius: 12,
+              background: "rgba(201,162,39,0.06)", border: "1px solid rgba(201,162,39,0.15)",
+              fontSize: 12, color: "#c9a227", fontWeight: 600,
+              display: "flex", alignItems: "center", gap: 8,
+            }}
+          >
+            <Anchor size={14} /> {preselectedNote}
+          </motion.div>
         )}
+
         <StepIndicator step={step} />
 
         <AnimatePresence mode="wait">
-          {/* ── STEP 0: Select Package ── */}
+
+          {/* ─── STEP 0: Select Package ─── */}
           {step === 0 && (
             <motion.div
               key="step0"
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -30 }}
-              transition={{ duration: 0.4 }}
+              initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
             >
-              <div className="mb-8">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-10 h-[1.5px] bg-[#c9a227]" />
-                  <span className="text-[10px] font-bold tracking-[2.5px] uppercase text-[#c9a227]">
-                    Charter Packages
-                  </span>
-                </div>
-                <h2 className="text-2xl md:text-3xl font-serif">
+              <div style={{ marginBottom: 32 }}>
+                <SectionLabel text="Charter Packages" />
+                <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 36, fontWeight: 800, color: "#5a3a00", marginBottom: 8 }}>
                   Choose Your Package
                 </h2>
-                <p className="text-[#1f1a18]/55 text-sm mt-1">
-                  Select a charter type to continue to booking.
+                <p style={{ fontSize: 13, color: "#8a7840", lineHeight: 1.7 }}>
+                  Select a charter type to continue. All rates include Captain and crew.
                 </p>
               </div>
 
-              {/* Main charter rates */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+              {/* Rate Cards */}
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20, marginBottom: 24 }}>
                 {CHARTER_RATES.map((rate) => (
-                  <RateCard
-                    key={rate.id}
-                    rate={rate}
-                    selected={selectedRateId === rate.id}
-                    onSelect={() => setSelectedRateId(rate.id)}
-                  />
+                  <RateCard key={rate.id} rate={rate} selected={selectedRateId === rate.id} onSelect={() => setSelectedRateId(rate.id)} />
                 ))}
               </div>
 
-              {/* Special rates accordion */}
-              <div className="border border-white/10 rounded-3xl overflow-hidden mb-8">
+              {/* Special Events Accordion */}
+              <div style={{
+                borderRadius: 20, overflow: "hidden", marginBottom: 32,
+                border: "1.5px solid rgba(201,162,39,0.1)",
+                background: "rgba(255,255,255,0.6)", backdropFilter: "blur(16px)",
+              }}>
                 <button
                   onClick={() => setShowSpecial((p) => !p)}
-                  className="w-full flex items-center justify-between p-5 hover:bg-white/3 transition-colors"
+                  style={{
+                    width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between",
+                    padding: "20px 24px", background: "none", border: "none", cursor: "pointer",
+                  }}
                 >
-                  <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-full bg-[#c9a227]/10 border border-[#c9a227]/20 flex items-center justify-center">
-                      <Star className="w-4 h-4 text-[#c9a227]" />
+                  <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+                    <div style={{
+                      width: 42, height: 42, borderRadius: 12,
+                      background: "linear-gradient(135deg, rgba(201,162,39,0.12), rgba(201,162,39,0.05))",
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      border: "1px solid rgba(201,162,39,0.2)",
+                    }}>
+                      <Star size={18} style={{ color: "#c9a227" }} />
                     </div>
-                    <div className="text-left">
-                      <h3 className="text-base font-serif">
+                    <div style={{ textAlign: "left" }}>
+                      <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 16, fontWeight: 700, color: "#5a3a00" }}>
                         Special Events & Occasions
                       </h3>
-                      <p className="text-[10px] text-[#1f1a18]/45 mt-0.5">
-                        Corporate, celebrations & culinary
-                      </p>
+                      <p style={{ fontSize: 10, color: "#b8a660", marginTop: 2 }}>Corporate, celebrations & culinary experiences</p>
                     </div>
                   </div>
-                  <ChevronDown
-                    className={`w-5 h-5 text-[#1f1a18]/50 transition-transform duration-300 ${
-                      showSpecial ? "rotate-180" : ""
-                    }`}
-                  />
+                  <motion.div animate={{ rotate: showSpecial ? 180 : 0 }} transition={{ duration: 0.3 }}>
+                    <ChevronDown size={18} style={{ color: "#b8a660" }} />
+                  </motion.div>
                 </button>
+
                 <AnimatePresence>
                   {showSpecial && (
                     <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="overflow-hidden"
+                      initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.35 }} style={{ overflow: "hidden" }}
                     >
-                      <div className="px-5 pb-5 grid grid-cols-1 md:grid-cols-2 gap-3">
+                      <div style={{ padding: "0 20px 20px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
                         {SPECIAL_RATES.map((r) => (
-                          <SpecialRateCard
-                            key={r.id}
-                            rate={r}
-                            selected={selectedRateId === r.id}
-                            onSelect={() => setSelectedRateId(r.id)}
-                          />
+                          <SpecialRateCard key={r.id} rate={r} selected={selectedRateId === r.id} onSelect={() => setSelectedRateId(r.id)} />
                         ))}
                       </div>
                     </motion.div>
@@ -609,512 +629,431 @@ const HERO_VIDEO = "assets/attract_video.mp4";
                 </AnimatePresence>
               </div>
 
-              {/* Proceed CTA */}
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-5 rounded-2xl border border-white/10 bg-white/3">
+              {/* Continue CTA */}
+              <motion.div
+                style={{
+                  display: "flex", alignItems: "center", justifyContent: "space-between",
+                  padding: "20px 24px", borderRadius: 18,
+                  background: "rgba(255,255,255,0.7)", backdropFilter: "blur(16px)",
+                  border: "1.5px solid rgba(201,162,39,0.1)",
+                  boxShadow: "0 8px 30px rgba(90,58,0,0.06)",
+                }}
+              >
                 <div>
                   {selected ? (
-                    <div>
-                      <p className="text-[10px] text-[#1f1a18]/45 uppercase tracking-widest mb-0.5">
-                        Selected Package
+                    <>
+                      <p style={{ fontSize: 10, color: "#b8a660", textTransform: "uppercase", letterSpacing: "1.5px", fontWeight: 700, marginBottom: 3 }}>Selected</p>
+                      <p style={{ fontFamily: "'Playfair Display', serif", fontSize: 16, color: "#5a3a00", fontWeight: 700 }}>
+                        {selected.name} — <span style={{ color: "#c9a227" }}>{selected.price}</span>
                       </p>
-                      <p className="font-serif text-base text-[#1f1a18]">
-                        {selected.name} —{" "}
-                        <span className="text-[#c9a227]">{selected.price}</span>
-                      </p>
-                    </div>
+                    </>
                   ) : (
-                    <p className="text-[#1f1a18]/45 text-sm">
-                      ← Select a package above to continue
-                    </p>
+                    <p style={{ fontSize: 13, color: "#b8a660" }}>← Select a package above to continue</p>
                   )}
                 </div>
                 <motion.button
-                  whileTap={{ scale: 0.97 }}
                   onClick={handleProceedToDetails}
                   disabled={!selectedRateId}
-                  className="flex items-center gap-2 px-8 py-4 bg-[#c9a227] text-[#040d1a] font-bold rounded-xl text-sm transition-all shadow-xl shadow-[#c9a227]/20 disabled:opacity-30 disabled:cursor-not-allowed hover:translate-y-[-2px] active:scale-95"
+                  whileHover={selectedRateId ? { scale: 1.03, y: -2 } : {}}
+                  whileTap={selectedRateId ? { scale: 0.97 } : {}}
+                  style={{
+                    display: "flex", alignItems: "center", gap: 8,
+                    padding: "14px 26px", borderRadius: 14,
+                    background: selectedRateId ? "linear-gradient(135deg, #5a3a00, #c9a227)" : "rgba(201,162,39,0.1)",
+                    color: selectedRateId ? "white" : "#b8a660",
+                    border: "none", cursor: selectedRateId ? "pointer" : "not-allowed",
+                    fontSize: 13, fontWeight: 800, letterSpacing: "0.3px",
+                    boxShadow: selectedRateId ? "0 8px 30px rgba(90,58,0,0.25)" : "none",
+                    transition: "all 0.3s ease",
+                  }}
                 >
-                  Continue to Details{" "}
-                  <ArrowUpRight className="w-4 h-4" />
+                  Continue to Details <ArrowUpRight size={16} />
                 </motion.button>
-              </div>
+              </motion.div>
 
-              <p className="text-center text-[#1f1a18]/35 text-[10px] mt-4">
-                * All rates include captain and crew. Fuel, food, and gratuity not
-                included.
+              <p style={{ textAlign: "center", fontSize: 10, color: "#b8a660", marginTop: 14 }}>
+                * Rates include captain and crew. Fuel, food & gratuity not included.
               </p>
             </motion.div>
           )}
 
-          {/* ── STEP 1: Your Details ── */}
+          {/* ─── STEP 1: Your Details ─── */}
           {step === 1 && (
             <motion.div
               key="step1"
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -30 }}
-              transition={{ duration: 0.4 }}
+              initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
             >
-              <div className="mb-8 flex items-start justify-between">
+              <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 28 }}>
                 <div>
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-10 h-[1.5px] bg-[#c9a227]" />
-                    <span className="text-[10px] font-bold tracking-[2.5px] uppercase text-[#c9a227]">
-                      Your Information
-                    </span>
-                  </div>
-                  <h2 className="text-2xl md:text-3xl font-serif">
-                    Your Details
-                  </h2>
+                  <SectionLabel text="Your Information" />
+                  <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 36, fontWeight: 800, color: "#5a3a00" }}>Your Details</h2>
                 </div>
                 <button
                   onClick={() => setStep(0)}
-                  className="flex items-center gap-1.5 text-[#1f1a18]/50 hover:text-[#1f1a18] text-xs transition-colors mt-1"
+                  style={{ display: "flex", alignItems: "center", gap: 5, fontSize: 12, color: "#b8a660", background: "none", border: "none", cursor: "pointer", marginTop: 6 }}
                 >
-                  <ChevronLeft className="w-3.5 h-3.5" /> Back
+                  <ChevronLeft size={14} /> Back
                 </button>
               </div>
 
-              {/* Selected package recap */}
+              {/* Package Recap */}
               {selected && (
-                <div className="flex items-center justify-between p-4 rounded-2xl bg-[#c9a227]/8 border border-[#c9a227]/20 mb-6">
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-[#c9a227]/15 flex items-center justify-center">
-                      <Ship className="w-4 h-4 text-[#c9a227]" />
-                    </div>
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}
+                  style={{
+                    display: "flex", alignItems: "center", justifyContent: "space-between",
+                    padding: "16px 20px", borderRadius: 16, marginBottom: 28,
+                    background: "rgba(201,162,39,0.05)", border: "1.5px solid rgba(201,162,39,0.15)",
+                  }}
+                >
+                  <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                    <span style={{ fontSize: 26 }}>{(selected as CharterRate).emoji}</span>
                     <div>
-                      <p className="text-xs font-bold">{selected.name}</p>
-                      <p className="text-[10px] text-[#1f1a18]/50">
-                        {(selected as CharterRate).duration || "Custom"} ·{" "}
-                        {(selected as CharterRate).guests || "Contact for details"}
+                      <p style={{ fontWeight: 800, fontSize: 14, color: "#5a3a00" }}>{selected.name}</p>
+                      <p style={{ fontSize: 10, color: "#8a7840", marginTop: 2 }}>
+                        {(selected as CharterRate).duration || "Custom"} · {(selected as CharterRate).guests || "Contact for details"}
                       </p>
                     </div>
                   </div>
-                  <span className="text-[#c9a227] font-bold font-serif text-lg">
-                    {selected.price}
-                  </span>
-                </div>
+                  <span style={{ fontFamily: "'Playfair Display', serif", fontSize: 22, fontWeight: 800, color: "#c9a227" }}>{selected.price}</span>
+                </motion.div>
               )}
 
-              <form
-  onSubmit={handleProceedToPayment}
-  className="grid grid-cols-1 md:grid-cols-2 gap-5"
->
-  {/* First Name */}
-  <div className="space-y-1.5">
-    <label className="text-[10px] font-bold tracking-[1.5px] uppercase text-black/70">
-      First Name <span className="text-[#c9a227]">*</span>
-    </label>
-
-    <input
-      required
-      type="text"
-      value={firstName}
-      onChange={(e) => setFirstName(e.target.value)}
-      placeholder="John"
-      className="w-full bg-white border border-black/10 focus:border-[#c9a227] rounded-xl px-4 py-3.5 text-sm font-bold text-black outline-none transition-colors placeholder:text-black/40"
-      style={{ fontFamily: "sans-serif" }}
-    />
-  </div>
-
-  {/* Last Name */}
-  <div className="space-y-1.5">
-    <label className="text-[10px] font-bold tracking-[1.5px] uppercase text-black/70">
-      Last Name <span className="text-[#c9a227]">*</span>
-    </label>
-
-    <input
-      required
-      type="text"
-      value={lastName}
-      onChange={(e) => setLastName(e.target.value)}
-      placeholder="Doe"
-      className="w-full bg-white border border-black/10 focus:border-[#c9a227] rounded-xl px-4 py-3.5 text-sm font-bold text-black outline-none transition-colors placeholder:text-black/40"
-      style={{ fontFamily: "sans-serif" }}
-    />
-  </div>
-
-  {/* Email */}
-  <div className="space-y-1.5">
-    <label className="text-[10px] font-bold tracking-[1.5px] uppercase text-black/70">
-      Email Address <span className="text-[#c9a227]">*</span>
-    </label>
-
-    <input
-      required
-      type="email"
-      value={email}
-      onChange={(e) => setEmail(e.target.value)}
-      placeholder="john@example.com"
-      className="w-full bg-white border border-black/10 focus:border-[#c9a227] rounded-xl px-4 py-3.5 text-sm font-bold text-black outline-none transition-colors placeholder:text-black/40"
-      style={{ fontFamily: "sans-serif" }}
-    />
-  </div>
-
-  {/* Phone */}
-  <div className="space-y-1.5">
-    <label className="text-[10px] font-bold tracking-[1.5px] uppercase text-black/70">
-      Phone Number
-    </label>
-
-    <input
-      type="tel"
-      value={phone}
-      onChange={(e) => setPhone(e.target.value)}
-      placeholder="(555) 000-0000"
-      className="w-full bg-white border border-black/10 focus:border-[#c9a227] rounded-xl px-4 py-3.5 text-sm font-bold text-black outline-none transition-colors placeholder:text-black/40"
-      style={{ fontFamily: "sans-serif" }}
-    />
-  </div>
-
-  {/* Preferred Date */}
-  <div className="space-y-1.5">
-    <label className="text-[10px] font-bold tracking-[1.5px] uppercase text-black/70">
-      Preferred Date
-    </label>
-
-    <div className="relative">
-      <input
-        id="preferred-date"
-        type="date"
-        value={preferredDate}
-        onChange={(e) => setPreferredDate(e.target.value)}
-        className="w-full bg-white border border-black/10 focus:border-[#c9a227] rounded-xl px-4 pr-12 py-3.5 text-sm font-bold text-black outline-none transition-colors [color-scheme:light]"
-        style={{ fontFamily: "sans-serif" }}
-      />
-
-      <button
-        type="button"
-        onClick={() => {
-          const input = document.getElementById(
-            "preferred-date"
-          ) as HTMLInputElement;
-
-          if (input?.showPicker) {
-            input.showPicker();
-          } else {
-            input?.focus();
-            input?.click();
-          }
-        }}
-        className="absolute right-4 top-1/2 -translate-y-1/2 text-[#c9a227] hover:scale-110 transition-transform"
-      >
-        <Calendar className="w-4 h-4" />
-      </button>
-    </div>
-  </div>
-
-  {/* Guest Count */}
-  <div className="space-y-1.5">
-    <label className="text-[10px] font-bold tracking-[1.5px] uppercase text-black/70">
-      Number of Guests
-    </label>
-
-    <select
-      value={guestCount}
-      onChange={(e) => setGuestCount(e.target.value)}
-      className="w-full bg-white border border-black/10 focus:border-[#c9a227] rounded-xl px-4 py-3.5 text-sm font-bold text-black outline-none transition-colors appearance-none cursor-pointer"
-      style={{ fontFamily: "sans-serif" }}
-    >
-      <option value="">Select guests</option>
-
-      {Array.from({ length: 12 }, (_, i) => i + 1).map((n) => (
-        <option key={n} value={n}>
-          {n} {n === 1 ? "guest" : "guests"}
-        </option>
-      ))}
-    </select>
-  </div>
-
-  {/* Message */}
-  <div className="md:col-span-2 space-y-1.5">
-    <label className="text-[10px] font-bold tracking-[1.5px] uppercase text-black/70">
-      Special Requests / Notes
-    </label>
-
-    <textarea
-      rows={3}
-      value={message}
-      onChange={(e) => setMessage(e.target.value)}
-      placeholder="Dietary needs, special occasions, destination preferences…"
-      className="w-full bg-white border border-black/10 focus:border-[#c9a227] rounded-xl px-4 py-3.5 text-sm font-bold text-black outline-none transition-colors resize-none placeholder:text-black/40"
-      style={{ fontFamily: "sans-serif" }}
-    />
-  </div>
-</form>
-
-              {/* Step 1 → Step 2 CTA */}
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-5 rounded-2xl border border-[#1f1a18]/12 bg-[#1f1a18]/3 mt-6">
-                <div>
-                  {selected ? (
-                    <div>
-                      <p className="text-[10px] text-[#1f1a18]/50 uppercase tracking-widest mb-0.5">
-                        Selected Package
-                      </p>
-                      <p className="font-serif text-base text-[#1f1a18]">
-                        {selected.name} —{" "}
-                        <span className="text-[#c9a227]">{selected.price}</span>
-                      </p>
+              {/* Form */}
+              <form onSubmit={handleProceedToPayment}>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 20 }}>
+                  {/* First Name */}
+                  <div>
+                    <label style={labelStyle}>First Name <span style={{ color: "#c9a227" }}>*</span></label>
+                    <input
+                      required type="text" value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                      onFocus={() => setFocusedField("firstName")} onBlur={() => setFocusedField(null)}
+                      placeholder="John"
+                      style={inputStyle("firstName")}
+                    />
+                  </div>
+                  {/* Last Name */}
+                  <div>
+                    <label style={labelStyle}>Last Name <span style={{ color: "#c9a227" }}>*</span></label>
+                    <input
+                      required type="text" value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                      onFocus={() => setFocusedField("lastName")} onBlur={() => setFocusedField(null)}
+                      placeholder="Doe"
+                      style={inputStyle("lastName")}
+                    />
+                  </div>
+                  {/* Email */}
+                  <div>
+                    <label style={labelStyle}>Email <span style={{ color: "#c9a227" }}>*</span></label>
+                    <input
+                      required type="email" value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      onFocus={() => setFocusedField("email")} onBlur={() => setFocusedField(null)}
+                      placeholder="john@example.com"
+                      style={inputStyle("email")}
+                    />
+                  </div>
+                  {/* Phone */}
+                  <div>
+                    <label style={labelStyle}>Phone Number</label>
+                    <input
+                      type="tel" value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      onFocus={() => setFocusedField("phone")} onBlur={() => setFocusedField(null)}
+                      placeholder="(555) 000-0000"
+                      style={inputStyle("phone")}
+                    />
+                  </div>
+                  {/* Date */}
+                  <div>
+                    <label style={labelStyle}>Preferred Date</label>
+                    <div style={{ position: "relative" }}>
+                      <input
+                        id="book-preferred-date" type="date" value={preferredDate}
+                        onChange={(e) => setPreferredDate(e.target.value)}
+                        onFocus={() => setFocusedField("date")} onBlur={() => setFocusedField(null)}
+                        style={{ ...inputStyle("date"), colorScheme: "light", paddingRight: 40 }}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => { const el = document.getElementById("book-preferred-date") as HTMLInputElement; el?.showPicker?.(); }}
+                        style={{ position: "absolute", right: 12, top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer" }}
+                      >
+                        <Calendar size={15} style={{ color: "#c9a227" }} />
+                      </button>
                     </div>
-                  ) : (
-                    <p className="text-[#1f1a18]/50 text-sm">Fill in your details to continue</p>
-                  )}
+                  </div>
+                  {/* Guest Count */}
+                  <div>
+                    <label style={labelStyle}>Number of Guests</label>
+                    <div style={{ position: "relative" }}>
+                      <select
+                        value={guestCount} onChange={(e) => setGuestCount(e.target.value)}
+                        onFocus={() => setFocusedField("guests")} onBlur={() => setFocusedField(null)}
+                        style={{ ...inputStyle("guests"), appearance: "none", cursor: "pointer", paddingRight: 36 }}
+                      >
+                        <option value="">Select guests</option>
+                        {Array.from({ length: 12 }, (_, i) => i + 1).map((n) => (
+                          <option key={n} value={n}>{n} {n === 1 ? "guest" : "guests"}</option>
+                        ))}
+                      </select>
+                      <ChevronDown size={14} style={{ position: "absolute", right: 12, top: "50%", transform: "translateY(-50%)", color: "#b8a660", pointerEvents: "none" }} />
+                    </div>
+                  </div>
                 </div>
-                <motion.button
-                  whileTap={{ scale: 0.97 }}
-                  onClick={(e) => {
-                    const form = document.querySelector("form");
-                    if (form && form.reportValidity()) {
-                      handleProceedToPayment(e as unknown as React.FormEvent);
-                    }
-                  }}
-                  disabled={!firstName || !lastName || !email}
-                  className="flex items-center gap-2 px-8 py-4 bg-[#c9a227] text-[#040d1a] font-bold rounded-xl text-sm transition-all shadow-xl shadow-[#c9a227]/20 disabled:opacity-30 disabled:cursor-not-allowed hover:translate-y-[-2px] active:scale-95"
-                >
-                  Continue to Review <ArrowUpRight className="w-4 h-4" />
-                </motion.button>
-              </div>
+
+                {/* Message */}
+                <div style={{ marginBottom: 24 }}>
+                  <label style={labelStyle}>Special Requests / Notes</label>
+                  <textarea
+                    rows={3} value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    onFocus={() => setFocusedField("message")} onBlur={() => setFocusedField(null)}
+                    placeholder="Dietary needs, special occasions, destination preferences…"
+                    style={{ ...inputStyle("message"), resize: "none", lineHeight: 1.6 }}
+                  />
+                </div>
+
+                {/* CTA */}
+                <div style={{
+                  display: "flex", alignItems: "center", justifyContent: "space-between",
+                  padding: "18px 22px", borderRadius: 16,
+                  background: "rgba(255,255,255,0.7)", border: "1.5px solid rgba(201,162,39,0.1)",
+                }}>
+                  <div>
+                    {selected && (
+                      <>
+                        <p style={{ fontSize: 10, color: "#b8a660", textTransform: "uppercase", letterSpacing: "1.5px", fontWeight: 700, marginBottom: 3 }}>Package</p>
+                        <p style={{ fontFamily: "'Playfair Display', serif", fontSize: 16, color: "#5a3a00", fontWeight: 700 }}>
+                          {selected.name} — <span style={{ color: "#c9a227" }}>{selected.price}</span>
+                        </p>
+                      </>
+                    )}
+                  </div>
+                  <motion.button
+                    type="submit"
+                    disabled={!firstName || !lastName || !email}
+                    whileHover={firstName && lastName && email ? { scale: 1.03, y: -2 } : {}}
+                    whileTap={firstName && lastName && email ? { scale: 0.97 } : {}}
+                    style={{
+                      display: "flex", alignItems: "center", gap: 8,
+                      padding: "14px 24px", borderRadius: 14,
+                      background: firstName && lastName && email ? "linear-gradient(135deg, #5a3a00, #c9a227)" : "rgba(201,162,39,0.08)",
+                      color: firstName && lastName && email ? "white" : "#b8a660",
+                      border: "none", cursor: firstName && lastName && email ? "pointer" : "not-allowed",
+                      fontSize: 13, fontWeight: 800,
+                      boxShadow: firstName && lastName && email ? "0 8px 30px rgba(90,58,0,0.22)" : "none",
+                      transition: "all 0.3s",
+                    }}
+                  >
+                    Continue to Review <ArrowUpRight size={16} />
+                  </motion.button>
+                </div>
+              </form>
             </motion.div>
           )}
 
-          {/* ── STEP 2: Confirm & Pay ── */}
+          {/* ─── STEP 2: Confirm & Pay ─── */}
           {step === 2 && (
             <motion.div
               key="step2"
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -30 }}
-              transition={{ duration: 0.4 }}
+              initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
             >
-              <div className="mb-8 flex items-start justify-between">
+              <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 32 }}>
                 <div>
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-10 h-[1.5px] bg-[#c9a227]" />
-                    <span className="text-[10px] font-bold tracking-[2.5px] uppercase text-[#c9a227]">
-                      Review Order
-                    </span>
-                  </div>
-                  <h2 className="text-2xl md:text-3xl font-serif">
-                    Confirm & Pay
-                  </h2>
+                  <SectionLabel text="Review Order" />
+                  <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 36, fontWeight: 800, color: "#5a3a00" }}>Confirm & Pay</h2>
                 </div>
                 <button
                   onClick={() => setStep(1)}
-                  className="flex items-center gap-1.5 text-[#1f1a18]/50 hover:text-[#1f1a18] text-xs transition-colors mt-1"
+                  style={{ display: "flex", alignItems: "center", gap: 5, fontSize: 12, color: "#b8a660", background: "none", border: "none", cursor: "pointer", marginTop: 6 }}
                 >
-                  <ChevronLeft className="w-3.5 h-3.5" /> Back
+                  <ChevronLeft size={14} /> Back
                 </button>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
                 {/* Order Summary */}
-                <div className="space-y-4">
-                  <h3 className="text-sm font-bold uppercase tracking-widest text-[#1f1a18]/50">
-                    Order Summary
-                  </h3>
+                <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+                  <h3 style={{ fontSize: 10, fontWeight: 800, letterSpacing: "2px", textTransform: "uppercase", color: "#b8a660" }}>Order Summary</h3>
 
-                  {/* Charter */}
-                  <div className="p-5 rounded-2xl border border-white/10 bg-white/3 space-y-3">
-                    <div className="flex items-center gap-3 pb-3 border-b border-white/8">
-                      <div className="w-10 h-10 rounded-xl bg-[#c9a227]/10 flex items-center justify-center">
-                        <Ship className="w-5 h-5 text-[#c9a227]" />
+                  {/* Charter Info */}
+                  <div style={{
+                    padding: "20px 22px", borderRadius: 20,
+                    background: "rgba(255,255,255,0.8)", border: "1.5px solid rgba(201,162,39,0.1)",
+                    backdropFilter: "blur(16px)",
+                  }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 12, paddingBottom: 16, marginBottom: 16, borderBottom: "1px solid rgba(201,162,39,0.08)" }}>
+                      <div style={{ width: 44, height: 44, borderRadius: 12, background: "rgba(201,162,39,0.08)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                        <span style={{ fontSize: 22 }}>{(selected as CharterRate)?.emoji || "⚓"}</span>
                       </div>
                       <div>
-                        <p className="font-bold text-sm">{selected?.name}</p>
-                        <p className="text-[10px] text-[#1f1a18]/45">
-                          Serendipity — 94' Lazzara
-                        </p>
+                        <p style={{ fontWeight: 800, fontSize: 14, color: "#5a3a00" }}>{selected?.name}</p>
+                        <p style={{ fontSize: 10, color: "#8a7840", marginTop: 2 }}>Serendipity — 94' Lazzara</p>
                       </div>
                     </div>
 
                     {[
-                      {
-                        label: "Guest",
-                        value: `${firstName} ${lastName}`,
-                        icon: Users,
-                      },
-                      { label: "Email", value: email, icon: null },
-                      {
-                        label: "Date",
-                        value: preferredDate || "TBD",
-                        icon: Calendar,
-                      },
-                      {
-                        label: "Guests",
-                        value: guestCount ? `${guestCount} guests` : "TBD",
-                        icon: Users,
-                      },
-                      {
-                        label: "Duration",
-                        value:
-                          (selected as CharterRate)?.duration ||
-                          "Custom — contact us",
-                        icon: Clock,
-                      },
+                      { label: "Guest", value: `${firstName} ${lastName}` },
+                      { label: "Email", value: email },
+                      { label: "Date", value: preferredDate || "TBD" },
+                      { label: "Guests", value: guestCount ? `${guestCount} guests` : "TBD" },
+                      { label: "Duration", value: (selected as CharterRate)?.duration || "Custom" },
                     ].map((row, i) => (
-                      <div key={i} className="flex justify-between text-xs">
-                        <span className="text-[#1f1a18]/45">{row.label}</span>
-                        <span
-                          className="text-[#1f1a18]/75 text-right max-w-[60%] truncate"
-                          style={{ fontFamily: "sans-serif" }}
-                        >
-                          {row.value}
-                        </span>
+                      <div key={i} style={{ display: "flex", justifyContent: "space-between", fontSize: 12, marginBottom: 10 }}>
+                        <span style={{ color: "#b8a660", fontWeight: 600 }}>{row.label}</span>
+                        <span style={{ color: "#5a3a00", fontWeight: 700, textAlign: "right", maxWidth: "60%" }}>{row.value}</span>
                       </div>
                     ))}
                   </div>
 
-                  {/* Price breakdown */}
-                  <div className="p-5 rounded-2xl border border-[#c9a227]/20 bg-[#c9a227]/5 space-y-3">
-                    <div className="flex justify-between text-sm">
-                      <span className="text-[#1f1a18]/55">Charter Base Rate</span>
-                      <span className="font-bold">{selected?.price}</span>
+                  {/* Price Breakdown */}
+                  <div style={{
+                    padding: "20px 22px", borderRadius: 20,
+                    background: "linear-gradient(135deg, rgba(201,162,39,0.06), rgba(255,255,255,0.9))",
+                    border: "1.5px solid rgba(201,162,39,0.2)",
+                  }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", fontSize: 13, marginBottom: 10 }}>
+                      <span style={{ color: "#8a7840", fontWeight: 600 }}>Charter Base Rate</span>
+                      <span style={{ fontWeight: 800, color: "#5a3a00" }}>{selected?.price}</span>
                     </div>
-                    <div className="flex justify-between text-xs">
-                      <span className="text-[#1f1a18]/40">CC Surcharge (2.5%)</span>
-                      <span className="text-[#1f1a18]/50">
-                        {selected?.numPrice
-                          ? `+$${(selected.numPrice * 0.025).toLocaleString(
-                              "en-US",
-                              { minimumFractionDigits: 2 }
-                            )}`
-                          : "Calculated at payment"}
+                    <div style={{ display: "flex", justifyContent: "space-between", fontSize: 11, marginBottom: 14, color: "#b8a660" }}>
+                      <span>CC Surcharge (2.5%)</span>
+                      <span>
+                        {(selected as CharterRate)?.numPrice ? `+$${((selected as CharterRate).numPrice * 0.025).toLocaleString("en-US", { minimumFractionDigits: 2 })}` : "At checkout"}
                       </span>
                     </div>
-                    <div className="pt-2 border-t border-[#c9a227]/20 flex justify-between">
-                      <span className="text-[#1f1a18]/65 text-sm font-bold">
-                        Total (with CC)
-                      </span>
-                      <span className="text-[#c9a227] font-bold font-serif text-xl">
-                        {selected?.numPrice
-                          ? `$${(selected.numPrice * 1.025).toLocaleString(
-                              "en-US",
-                              { minimumFractionDigits: 2 }
-                            )}`
+                    <div style={{ paddingTop: 14, borderTop: "1px solid rgba(201,162,39,0.15)", display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+                      <span style={{ fontSize: 12, fontWeight: 700, color: "#8a7840" }}>Total (with CC)</span>
+                      <span style={{ fontFamily: "'Playfair Display', serif", fontSize: 26, fontWeight: 800, color: "#c9a227" }}>
+                        {(selected as CharterRate)?.numPrice
+                          ? `$${((selected as CharterRate).numPrice * 1.025).toLocaleString("en-US", { minimumFractionDigits: 2 })}`
                           : selected?.price}
                       </span>
                     </div>
-                    <p className="text-[9px] text-[#1f1a18]/35">
-                      No surcharge for ACH (eCheck) payments — save{" "}
-                      {selected?.numPrice
-                        ? `$${(selected.numPrice * 0.025).toLocaleString()}`
-                        : ""}
+                    <p style={{ fontSize: 9, color: "#c8b870", marginTop: 8 }}>
+                      💡 No surcharge for ACH (eCheck) payments
                     </p>
                   </div>
 
-                  {/* Inclusions */}
-                  {"highlights" in (selected ?? {}) &&
-                    (selected as CharterRate).highlights?.length > 0 && (
-                      <div className="p-4 rounded-2xl border border-white/8 bg-white/3">
-                        <p className="text-[10px] font-bold uppercase tracking-widest text-[#1f1a18]/40 mb-2.5">
-                          Included
-                        </p>
-                        <div className="space-y-2">
-                          {(selected as CharterRate).highlights.map((h, i) => (
-                            <div key={i} className="flex items-center gap-2">
-                              <Check className="w-3.5 h-3.5 text-[#c9a227] flex-shrink-0" />
-                              <span className="text-xs text-[#1f1a18]/55">{h}</span>
-                            </div>
-                          ))}
-                        </div>
+                  {/* Highlights */}
+                  {"highlights" in (selected ?? {}) && (selected as CharterRate).highlights?.length > 0 && (
+                    <div style={{
+                      padding: "16px 20px", borderRadius: 16,
+                      background: "rgba(255,255,255,0.6)", border: "1px solid rgba(201,162,39,0.08)",
+                    }}>
+                      <p style={{ fontSize: 9, fontWeight: 800, textTransform: "uppercase", letterSpacing: "1.5px", color: "#b8a660", marginBottom: 12 }}>Included</p>
+                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                        {(selected as CharterRate).highlights.map((h, i) => (
+                          <div key={i} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 12, color: "#7a6230" }}>
+                            <Check size={12} style={{ color: "#c9a227", flexShrink: 0 }} /> {h}
+                          </div>
+                        ))}
                       </div>
-                    )}
+                    </div>
+                  )}
                 </div>
 
-                {/* Payment CTA */}
-                <div className="space-y-4">
-                  <h3 className="text-sm font-bold uppercase tracking-widest text-[#1f1a18]/50">
-                    Payment
-                  </h3>
+                {/* Payment Column */}
+                <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+                  <h3 style={{ fontSize: 10, fontWeight: 800, letterSpacing: "2px", textTransform: "uppercase", color: "#b8a660" }}>Payment</h3>
 
-                  <div className="p-5 rounded-2xl border border-white/10 bg-white/3 space-y-4">
-                    <p className="text-sm text-[#1f1a18]/60 leading-relaxed">
-                      You'll be directed to our secure payment page where you
-                      can pay by credit card or ACH (eCheck). ACH has no
-                      surcharge.
+                  <div style={{
+                    padding: "24px 22px", borderRadius: 20,
+                    background: "rgba(255,255,255,0.8)", border: "1.5px solid rgba(201,162,39,0.1)",
+                    backdropFilter: "blur(16px)",
+                  }}>
+                    <p style={{ fontSize: 13, color: "#8a7840", lineHeight: 1.8, marginBottom: 20 }}>
+                      You'll be directed to our secure payment page where you can pay by credit card or ACH (eCheck). ACH has no surcharge.
                     </p>
 
-                    <div className="space-y-2.5">
-                      {[
-                        "256-bit SSL encrypted",
-                        "PCI DSS compliant",
-                        "Credit card & ACH accepted",
-                        "Confirmation within 24 hours",
-                      ].map((item, i) => (
-                        <div key={i} className="flex items-center gap-2 text-xs text-[#1f1a18]/50">
-                          <Shield className="w-3.5 h-3.5 text-[#c9a227]/60 flex-shrink-0" />
-                          {item}
+                    {[
+                      "256-bit SSL encrypted",
+                      "PCI DSS compliant",
+                      "Credit card & ACH accepted",
+                      "Confirmation within 24 hours",
+                    ].map((item, i) => (
+                      <div key={i} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 12, color: "#8a7840", marginBottom: 10 }}>
+                        <div style={{ width: 22, height: 22, borderRadius: 7, background: "rgba(201,162,39,0.07)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                          <Shield size={11} style={{ color: "#c9a227" }} />
                         </div>
-                      ))}
-                    </div>
+                        {item}
+                      </div>
+                    ))}
 
                     <motion.button
-                      whileTap={{ scale: 0.97 }}
                       onClick={handleConfirmPayment}
                       disabled={loading}
-                      className="w-full flex items-center justify-center gap-2 py-4 bg-gradient-to-r from-[#c9a227] to-[#d4b445] text-[#040d1a] font-bold rounded-xl text-sm transition-all shadow-xl shadow-[#c9a227]/20 hover:translate-y-[-2px] disabled:opacity-50 disabled:translate-y-0"
+                      whileHover={!loading ? { scale: 1.02, y: -2 } : {}}
+                      whileTap={!loading ? { scale: 0.98 } : {}}
+                      style={{
+                        width: "100%", display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
+                        padding: "16px 0", marginTop: 22, borderRadius: 14, border: "none",
+                        background: loading ? "#b8a660" : "linear-gradient(135deg, #5a3a00 0%, #c9a227 100%)",
+                        color: "white", fontSize: 13, fontWeight: 800, cursor: loading ? "not-allowed" : "pointer",
+                        boxShadow: loading ? "none" : "0 10px 35px rgba(90,58,0,0.28)",
+                        transition: "all 0.3s",
+                        letterSpacing: "0.3px",
+                      }}
                     >
                       {loading ? (
                         <>
                           <motion.div
-                            animate={{ rotate: 360 }}
-                            transition={{
-                              duration: 1,
-                              repeat: Infinity,
-                              ease: "linear",
-                            }}
-                            className="w-4 h-4 border-2 border-[#040d1a]/30 border-t-[#040d1a] rounded-full"
+                            animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                            style={{ width: 16, height: 16, border: "2.5px solid rgba(255,255,255,0.3)", borderTopColor: "white", borderRadius: "50%" }}
                           />
                           Preparing Payment…
                         </>
                       ) : (
-                        <>
-                          <CreditCard className="w-4 h-4" />
-                          Proceed to Secure Payment
-                        </>
+                        <><CreditCard size={16} /> Proceed to Secure Payment</>
                       )}
                     </motion.button>
 
-                    <p className="text-center text-[9px] text-[#1f1a18]/30 flex items-center justify-center gap-1.5">
-                      <Lock className="w-3 h-3" /> Secured by 256-bit SSL
-                      encryption
+                    <p style={{ textAlign: "center", fontSize: 9, color: "#c8b870", marginTop: 10, display: "flex", alignItems: "center", justifyContent: "center", gap: 5 }}>
+                      <Lock size={9} /> Secured by 256-bit SSL encryption
                     </p>
                   </div>
 
                   {/* Contact */}
-                  <div className="p-4 rounded-2xl border border-white/8 bg-white/3">
-                    <p className="text-[10px] text-[#1f1a18]/35 uppercase tracking-widest mb-3 font-bold">
-                      Questions? Call Us
-                    </p>
-                    <div className="flex flex-col gap-2">
-                      <a
-                        href="tel:4124182968"
-                        className="flex items-center gap-2 text-sm text-[#1f1a18]/55 hover:text-[#c9a227] transition-colors"
-                      >
-                        <Phone className="w-3.5 h-3.5 text-[#c9a227]/60" />{" "}
-                        Capt. Jake: 412-418-2968
+                  <div style={{
+                    padding: "18px 20px", borderRadius: 18,
+                    background: "rgba(255,255,255,0.7)", border: "1.5px solid rgba(201,162,39,0.08)",
+                  }}>
+                    <p style={{ fontSize: 9, fontWeight: 800, textTransform: "uppercase", letterSpacing: "2px", color: "#b8a660", marginBottom: 12 }}>Questions? Call Us</p>
+                    {[
+                      { name: "Capt. Jake", tel: "4124182968", display: "412-418-2968" },
+                      { name: "Manager Bryon", tel: "7276449653", display: "727-644-9653" },
+                    ].map((c, i) => (
+                      <a key={i} href={`tel:${c.tel}`} style={{
+                        display: "flex", alignItems: "center", gap: 8,
+                        fontSize: 12, color: "#7a6230", textDecoration: "none", fontWeight: 500,
+                        marginBottom: i === 0 ? 8 : 0, transition: "color 0.2s",
+                      }}>
+                        <div style={{ width: 26, height: 26, borderRadius: 8, background: "rgba(201,162,39,0.07)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                          <Phone size={11} style={{ color: "#c9a227" }} />
+                        </div>
+                        {c.name}: {c.display}
                       </a>
-                      <a
-                        href="tel:7276449653"
-                        className="flex items-center gap-2 text-sm text-[#1f1a18]/55 hover:text-[#c9a227] transition-colors"
-                      >
-                        <Phone className="w-3.5 h-3.5 text-[#c9a227]/60" />{" "}
-                        Manager Bryon: 727-644-9653
-                      </a>
-                    </div>
+                    ))}
                   </div>
 
-                  <div className="p-4 rounded-2xl border border-white/8 bg-white/3">
-                    <p className="text-[10px] text-[#1f1a18]/35 uppercase tracking-widest mb-2 font-bold">
-                      Location
-                    </p>
-                    <div className="flex items-start gap-2 text-xs text-[#1f1a18]/55">
-                      <MapPin className="w-3.5 h-3.5 text-[#c9a227]/60 mt-0.5 flex-shrink-0" />
-                      <span>
-                        <a href="https://maps.google.com/?q=Maximo+Marina,+St+Petersburg,+FL" target="_blank" rel="noopener noreferrer" className="hover:text-[#c9a227] transition-colors">Maximo Marina</a>, 3701 50 Ave S.
-                        <br />
-                        Saint Petersburg, FL
-                      </span>
+                  {/* Location */}
+                  <div style={{
+                    padding: "16px 20px", borderRadius: 16,
+                    background: "rgba(255,255,255,0.6)", border: "1px solid rgba(201,162,39,0.08)",
+                  }}>
+                    <p style={{ fontSize: 9, fontWeight: 800, textTransform: "uppercase", letterSpacing: "2px", color: "#b8a660", marginBottom: 10 }}>Location</p>
+                    <div style={{ display: "flex", alignItems: "flex-start", gap: 8, fontSize: 12, color: "#7a6230" }}>
+                      <MapPin size={13} style={{ color: "#c9a227", marginTop: 1, flexShrink: 0 }} />
+                      <a href="https://maps.google.com/?q=Maximo+Marina,+St+Petersburg,+FL" target="_blank" rel="noopener noreferrer"
+                        style={{ color: "inherit", textDecoration: "none", lineHeight: 1.7 }}>
+                        Maximo Marina<br />
+                        3701 50 Ave S., Saint Petersburg, FL
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -1124,20 +1063,24 @@ const HERO_VIDEO = "assets/attract_video.mp4";
         </AnimatePresence>
       </div>
 
-      {/* Footer */}
-      <footer
-        className="relative z-10 border-t border-white/5 py-8 px-6 md:px-16 mt-10"
-        style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 2rem)" }}
-      >
-        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-[10px] text-[#1f1a18]/35 uppercase tracking-widest">
-          <p>© 2025 Serendipity Yacht Charter. All Rights Reserved.</p>
-          <div className="flex gap-5">
-            <a href="/reservation" className="hover:text-[#c9a227] transition-colors">
-              Inquire
-            </a>
-            <a href="/" className="hover:text-[#c9a227] transition-colors">
-              Home
-            </a>
+      {/* ── FOOTER ── */}
+      <footer style={{
+        position: "relative", zIndex: 10, borderTop: "1px solid rgba(201,162,39,0.08)",
+        padding: "24px 40px", background: "rgba(255,255,255,0.5)", backdropFilter: "blur(10px)",
+      }}>
+        <div style={{
+          maxWidth: 900, margin: "0 auto", display: "flex",
+          alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12,
+        }}>
+          <p style={{ fontSize: 10, color: "#b8a660", textTransform: "uppercase", letterSpacing: "1.5px", fontWeight: 700 }}>
+            © 2025 Serendipity Yacht Charter. All Rights Reserved.
+          </p>
+          <div style={{ display: "flex", gap: 20 }}>
+            {[{ label: "Inquire", href: "/reservation" }, { label: "Home", href: "/" }].map((l, i) => (
+              <a key={i} href={l.href} style={{ fontSize: 10, color: "#b8a660", textDecoration: "none", fontWeight: 700, textTransform: "uppercase", letterSpacing: "1px" }}>
+                {l.label}
+              </a>
+            ))}
           </div>
         </div>
       </footer>
