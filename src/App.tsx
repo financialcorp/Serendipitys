@@ -2265,8 +2265,8 @@ function Navbar({ isScrolled, isHidden, setMobileMenuOpen, openAvail }:
           </motion.a>
         </div>
         <div className="hidden lg:flex items-center gap-5 xl:gap-8 flex-nowrap overflow-visible">
-          {["Home", "Accommodations", "Experiences", "Destinations"].map((item) => (
-            <a key={item} href={`#${item.toLowerCase()}`}
+          {["Home", "Accommodations", "Experiences", "Destinations", "Reservation"].map((item) => (
+            <a key={item} href={item === "Reservation" ? "/reservation" : `#${item.toLowerCase()}`}
               onMouseEnter={() => setHoveredItem(item)} onMouseLeave={() => setHoveredItem(null)}
               className="nav-link whitespace-nowrap flex-shrink-0 transition relative group text-sm font-medium"
               style={{ color: "#374151" }}>
@@ -2323,7 +2323,7 @@ function Navbar({ isScrolled, isHidden, setMobileMenuOpen, openAvail }:
 
 // ─── Mobile Menu ──────────────────────────────────────────────────────────────
 function MobileMenu({ setMobileMenuOpen, openAvail }: { setMobileMenuOpen: (o: boolean) => void; openAvail: () => void }) {
-  const menuItems = ["Home","Vessel","Private Experiences","Corporate Experiences","Gallery","Flybridge","Accommodations","Culinary","Destinations","Pricing","Mechanical","Reviews","Inquire"];
+  const menuItems = ["Home","Vessel","Private Experiences","Corporate Experiences","Gallery","Flybridge","Accommodations","Culinary","Destinations","Pricing","Mechanical","Reviews","Reservation","Inquire"];
   return (
     <motion.div initial={{ opacity: 0, x: "100%" }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: "100%" }}
       transition={{ type: "spring", stiffness: 260, damping: 28 }}
@@ -2340,7 +2340,7 @@ function MobileMenu({ setMobileMenuOpen, openAvail }: { setMobileMenuOpen: (o: b
         <div className="flex flex-col gap-1">
           {menuItems.map((l, i) => (
             <motion.a key={l} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.04 + 0.1 }}
-              href={l === "Home" ? "#home" : l === "Inquire" ? "#contact" : l === "Private Experiences" ? "#private" : l === "Corporate Experiences" ? "#corporate" : `#${l.toLowerCase()}`}
+              href={l === "Home" ? "#home" : l === "Inquire" ? "#contact" : l === "Reservation" ? "/reservation" : l === "Private Experiences" ? "#private" : l === "Corporate Experiences" ? "#corporate" : `#${l.toLowerCase()}`}
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center justify-between py-4 border-b group" style={{ borderColor: "rgba(31,26,24,0.06)" }}>
               <span className="text-xl font-serif group-hover:text-gold transition-colors" style={{ color: "#1f1a18" }}>{l}</span>
