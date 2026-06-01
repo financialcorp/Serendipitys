@@ -2,21 +2,21 @@ import React from "react";
 
 const Terms = () => {
   return (
-    <div style={{ maxWidth: 720, margin: "0 auto", padding: "2rem 1.5rem", background: "#f9edf0", minHeight: "100vh", fontFamily: '"Fira Sans", "Roboto Condensed", Raleway, serif', color: "#1f1a18" }}>
+    <div style={{ maxWidth: 720, margin: "0 auto", padding: "2rem 1.5rem", background: "#f9edf0", minHeight: "100vh", fontFamily: "Manrope, sans-serif", color: "#1f1a18" }}>
 
       <button
         onClick={() => window.history.back()}
-        className="inline-flex items-center gap-1.5 text-sm text-gray-400 border border-white/10 rounded-lg px-3.5 py-1.5 mb-10 hover:bg-white/5 transition-colors"
+        className="inline-flex items-center gap-1.5 text-sm text-[#374151] border border-white/10 rounded-lg px-3.5 py-1.5 mb-10 hover:bg-white/5 transition-colors"
       >
         ← Back to home
       </button>
 
       <div className="mb-10">
-        <span className="inline-flex items-center gap-1.5 text-xs text-gray-400 border border-white/10 rounded-full px-3 py-1 mb-4">
+        <span className="inline-flex items-center gap-1.5 text-xs text-[#374151] border border-white/10 rounded-full px-3 py-1 mb-4">
            Legal
         </span>
-        <h1 className="text-2xl font-medium text-gray-100 mb-2">Terms &amp; conditions</h1>
-        <p className="text-sm text-gray-400 leading-relaxed">
+        <h1 className="text-2xl font-medium text-[#111827] mb-2">Terms &amp; conditions</h1>
+        <p className="text-sm text-[#374151] leading-relaxed">
           By accessing or using the Serendipity Yacht website, you agree to be bound by the
           terms outlined below. Please read them carefully.
         </p>
@@ -48,12 +48,12 @@ const Terms = () => {
         },
       ].map(({ icon, title, body, calloutIcon }) => (
         <section key={title} className="mb-8">
-          <h2 className="flex items-center gap-2 text-base font-medium text-gray-200 mb-3">
-            <span className="text-gray-400">{icon}</span> {title}
+          <h2 className="flex items-center gap-2 text-base font-medium text-[#111827] mb-3">
+            <span className="text-[#374151]">{icon}</span> {title}
           </h2>
           <div className="flex items-start gap-3 bg-white/5 border border-white/10 rounded-xl p-4">
-            <span className="text-gray-400 text-lg mt-0.5">{calloutIcon}</span>
-            <p className="text-sm text-gray-400 leading-relaxed">{body}</p>
+            <span className="text-[#374151] text-lg mt-0.5">{calloutIcon}</span>
+            <p className="text-sm text-[#374151] leading-relaxed">{body}</p>
           </div>
         </section>
       ))}

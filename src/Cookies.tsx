@@ -2,7 +2,7 @@ import React from "react";
 
 const Cookies = () => {
   return (
-    <div style={{ maxWidth: 800, margin: "0 auto", padding: "2rem 1.5rem", background: "#f9edf0", minHeight: "100vh", fontFamily: '"Fira Sans", "Roboto Condensed", Raleway, serif', color: "#1f1a18" }}>
+    <div style={{ maxWidth: 800, margin: "0 auto", padding: "2rem 1.5rem", background: "#f9edf0", minHeight: "100vh", fontFamily: "Manrope, sans-serif", color: "#1f1a18" }}>
 
       <button
         onClick={() => window.history.back()}
@@ -19,7 +19,7 @@ const Cookies = () => {
           📋 Legal
         </div>
         <h1 className="text-4xl font-serif font-bold mb-3" style={{ color: "#1f1a18" }}>Cookies Policy</h1>
-        <p className="text-base leading-relaxed" style={{ color: "rgba(31,26,24,0.7)" }}>
+        <p className="text-base leading-relaxed" style={{ color: "#374151" }}>
           We use cookies to improve your browsing experience and deliver content that actually matters to you.
         </p>
       </div>
@@ -31,7 +31,7 @@ const Cookies = () => {
           <div style={{ fontSize: "1.5rem" }}>🍪</div>
           <div>
             <h2 className="text-lg font-semibold mb-2" style={{ color: "#1f1a18" }}>What are cookies?</h2>
-            <p className="text-sm leading-relaxed" style={{ color: "rgba(31,26,24,0.65)" }}>
+            <p className="text-sm leading-relaxed" style={{ color: "#4b5563" }}>
               Cookies are small text files stored on your device when you visit a website. They help us understand how users interact with our site and allow us to improve our services over time.
             </p>
           </div>

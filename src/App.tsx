@@ -2,7 +2,7 @@
  * @license
  * SPDX-License-Identifier: Apache-2.0
  *
- * FIXED VERSION — All PDF feedback issues addressed:
+ * FIXED VERSION - All PDF feedback issues addressed:
  * 1. scroll-margin-top on all sections (navbar cutoff fixed)
  * 2. Culinary card readable (light bg, dark text)
  * 3. Flybridge/WaterToys shadow artifacts removed
@@ -186,7 +186,7 @@ const EXPERIENCES: Experience[] = [
     img: "assets/occasion2.png",
     tag: "Celebration",
     title: "Birthday & Anniversary Celebrations",
-    desc: "Make your milestone unforgettable. We coordinate every detail—from floral décor and custom cakes to curated playlists and chef-prepared menus—so all you do is celebrate.",
+    desc: "Make your milestone unforgettable. We coordinate every detail-from floral décor and custom cakes to curated playlists and chef-prepared menus-so all you do is celebrate.",
     features: [
       "Custom décor packages",
       "Private chef available",
@@ -233,7 +233,7 @@ const EXPERIENCES: Experience[] = [
     ],
   },
   {
-    // FIX: Chef is female — use cheryl.jpeg
+    // FIX: Chef is female - use cheryl.jpeg
     img: "assets/cheryl.jpeg",
     tag: "Kitchen",
     title: "Chef's Cooking Class",
@@ -316,7 +316,7 @@ const ROOMS: Room[] = [
     title: "Midship Stateroom",
     desc: "The Midship Stateroom offers a beautifully appointed retreat centered around a comfortable double bed, bathed in natural light through a generous stainless steel porthole window. This inviting space includes:",
     amenities: [
-      "Motorized shades paired with refined ambient lighting — indirect cove illumination and soft accent lights — to set the perfect mood",
+      "Motorized shades paired with refined ambient lighting - indirect cove illumination and soft accent lights - to set the perfect mood",
       "Independently controlled air conditioning for personalized comfort",
       "Satellite DirecTV entertainment system",
       "Abundant storage with spacious drawers beneath the bed and a cedar lined closet",
@@ -350,7 +350,7 @@ const INTERIOR_GALLERY: GalleryImage[] = [
   { src: "assets/gallerymain.png", tab: "interior", label: "Master Stateroom" },
   { src: "assets/occasion5.png", tab: "interior", label: "VIP Stateroom" },
   { src: "assets/occasion6.png", tab: "interior", label: "Galley Kitchen" },
-  { src: "assets/cheryl_foods.jpeg", tab: "interior", label: "Fine Dining — Chef Cheryl" },
+  { src: "assets/cheryl_foods.jpeg", tab: "interior", label: "Fine Dining - Chef Cheryl" },
   { src: "assets/cheryl_foods1.jpeg", tab: "interior", label: "Culinary Artistry" },
   { src: "assets/cheryl_foods2.jpeg", tab: "interior", label: "Chef's Table Experience" },
   { src: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=800", tab: "interior", label: "Salon Lounge" },
@@ -374,7 +374,7 @@ const DAY_DESTINATIONS = [
   {
     name: "Egmont Key",
     img: "assets/egmont_key.jpg",
-    desc: "A hidden gem at the mouth of Tampa Bay, Egmont Key State Park offers white sand beaches, historic ruins, and a protected wildlife refuge. Move on the calm, tranquil side and explore the 19th-century fort, shell along the shoreline, or visit the historic lighthouse (1858). Gopher tortoises and seabirds roam freely—making it a peaceful, natural escape.",
+    desc: "A hidden gem at the mouth of Tampa Bay, Egmont Key State Park offers white sand beaches, historic ruins, and a protected wildlife refuge. Move on the calm, tranquil side and explore the 19th-century fort, shell along the shoreline, or visit the historic lighthouse (1858). Gopher tortoises and seabirds roam freely-making it a peaceful, natural escape.",
     tag: "Nature & History",
   },
   {
@@ -399,25 +399,25 @@ const DAY_DESTINATIONS = [
  
 const DINING_DESTINATIONS = [
   {
-    name: "Salt Rock Grill — Indian Shores",
+    name: "Salt Rock Grill - Indian Shores",
     img: "assets/salta.webp",
     desc: "An upscale waterfront institution featuring prime steak, fresh-caught seafood, and a top-tier wine list. Located directly on the Intracoastal, it's the ideal stop after a day of island hopping or sunset cruising.",
     tag: "Fine Dining",
   },
   {
-    name: "Doc Ford's Rum Bar — St. Pete Pier",
+    name: "Doc Ford's Rum Bar - St. Pete Pier",
     img: "assets/Doc_Fords.webp",
     desc: "Enjoy casual Caribbean-inspired flavors at the base of the St. Pete Pier. Famous for its Yucatan shrimp and mojitos, Doc Ford's offers indoor and outdoor seating with beautiful water views of downtown and Tampa Bay.",
     tag: "Casual Waterfront",
   },
   {
-    name: "Jackson's Bistro — Tampa",
+    name: "Jackson's Bistro - Tampa",
     img: "assets/Jacksons.webp",
-    desc: "Dock near downtown Tampa and step into one of the city's culinary landmarks. Known for its award-winning sushi, curated wine list, and panoramic waterfront views—Jackson's is a must-visit for special occasions.",
+    desc: "Dock near downtown Tampa and step into one of the city's culinary landmarks. Known for its award-winning sushi, curated wine list, and panoramic waterfront views-Jackson's is a must-visit for special occasions.",
     tag: "Award Winning",
   },
   {
-    name: "Marina Jack — Sarasota",
+    name: "Marina Jack - Sarasota",
     img: "assets/marina.webp",
     desc: "Located on Sarasota Bay, Marina Jack offers elegant dining paired with serene views of the Intracoastal. Enjoy steak, seafood, and pasta in a refined setting, complete with a full bar and lounge experience.",
     tag: "Bay Views",
@@ -426,37 +426,37 @@ const DINING_DESTINATIONS = [
  
 const OVERNIGHT_DESTINATIONS = [
   {
-    name: "St. Petersburg, FL — The Vinoy Marina",
+    name: "St. Petersburg, FL - The Vinoy Marina",
     img: "assets/overnight.webp",
     desc: "Walk to shops, art museums, and fine dining from this luxury downtown marina.",
     tag: "Downtown",
   },
   {
-    name: "Sarasota, FL — Marina Jack Yacht Basin",
+    name: "Sarasota, FL - Marina Jack Yacht Basin",
     img: "assets/overnight1.webp",
     desc: "A prime overnight stop offering walkable access to cultural venues and restaurants.",
     tag: "Cultural Hub",
   },
   {
-    name: "Longboat Key, FL — Longboat Key Moorings",
+    name: "Longboat Key, FL - Longboat Key Moorings",
     img: "https://serendipityyachtcharter.com/wp-content/uploads/2025/09/image4.webp",
     desc: "An exclusive, quiet marina retreat with access to beach clubs and fine dining.",
     tag: "Exclusive",
   },
   {
-    name: "Cape Coral, FL — The Westin Cape Coral Resort at Marina Village",
+    name: "Cape Coral, FL - The Westin Cape Coral Resort at Marina Village",
     img: "assets/overnight2.webp",
     desc: "Lagoon-style resort and marina complex offering the perfect day or overnight experience with full amenities and on-site restaurants.",
     tag: "Resort",
   },
   {
-    name: "Captiva Island, FL — South Seas Island Resort",
+    name: "Captiva Island, FL - South Seas Island Resort",
     img: "assets/overnight3.webp",
-    desc: "Secluded, family-friendly and romantic—perfect for multi-day charters and spa getaways.",
+    desc: "Secluded, family-friendly and romantic-perfect for multi-day charters and spa getaways.",
     tag: "Island Resort",
   },
   {
-    name: "Key West, FL — The Galleon Marina",
+    name: "Key West, FL - The Galleon Marina",
     img: "assets/overnight4.webp",
     desc: "For extended voyages, we can plan a Gulf-to-Key West adventure from the comfort of Serendipity. Guests: up to 12",
     tag: "Extended Voyage",
@@ -549,8 +549,8 @@ const WATER_TOY_DETAILS: WaterToyDetail[] = [
     badge: "Included",
     modalTitle: "SeaDoo Spark Jet Skis",
     modalSubtitle: "Twin High-Performance Personal Watercraft",
-    modalDesc: "Feel the rush of twin SeaDoo Spark jet skis — two of the most agile, lightweight personal watercraft on the water.",
-    modalFeatures: ["2 SeaDoo Spark units — always both available", "900 ACE engine — lightweight & responsive", "Perfect for beginners and experienced riders", "Launched from the yacht's integrated swim platform", "Life jackets & safety gear provided", "Available at all anchorages and calm water stops"],
+    modalDesc: "Feel the rush of twin SeaDoo Spark jet skis - two of the most agile, lightweight personal watercraft on the water.",
+    modalFeatures: ["2 SeaDoo Spark units - always both available", "900 ACE engine - lightweight & responsive", "Perfect for beginners and experienced riders", "Launched from the yacht's integrated swim platform", "Life jackets & safety gear provided", "Available at all anchorages and calm water stops"],
     modalImages: ["assets/SeaDoo.jpg", "assets/SeaDoo1.jpg", "assets/SeaDoo2.jpg"],
   },
   {
@@ -562,7 +562,7 @@ const WATER_TOY_DETAILS: WaterToyDetail[] = [
     modalTitle: "16' Novurania Jet Drive RIB",
     modalSubtitle: "Your Private Island-Hopping Tender",
     modalDesc: "The 16-foot Novurania Jet Drive rigid inflatable boat is Serendipity's dedicated tender, giving you the freedom to explore beaches, restaurants, and hidden coves.",
-    modalFeatures: ["16-foot rigid inflatable — stable & seaworthy", "Jet drive propulsion — safe for swimmers", "Shallow water capable — beach landings easy", "Seats up to 6 guests comfortably", "Used for shore excursions, restaurant runs & exploring", "Operated by trained crew member"],
+    modalFeatures: ["16-foot rigid inflatable - stable & seaworthy", "Jet drive propulsion - safe for swimmers", "Shallow water capable - beach landings easy", "Seats up to 6 guests comfortably", "Used for shore excursions, restaurant runs & exploring", "Operated by trained crew member"],
     modalImages: ["assets/Novurania.jpg", "assets/Novurania1.webp", "assets/Novurania2.jpg"],
   },
   {
@@ -573,8 +573,8 @@ const WATER_TOY_DETAILS: WaterToyDetail[] = [
     badge: "Adventure",
     modalTitle: "Waterskiing, Tubing & Wakeboarding",
     modalSubtitle: "Full Tow Sports Gear Package",
-    modalDesc: "Serendipity carries a full suite of tow sports equipment — from beginner-friendly tubes to performance wakeboards and water skis.",
-    modalFeatures: ["Performance wakeboards with bindings", "Slalom & combo water skis", "Inflatable towable tubes — 1 & 2-person", "Full tow rope & handles included", "Crew-operated towing — always a spotter aboard", "Helmets & life jackets for all sizes provided"],
+    modalDesc: "Serendipity carries a full suite of tow sports equipment - from beginner-friendly tubes to performance wakeboards and water skis.",
+    modalFeatures: ["Performance wakeboards with bindings", "Slalom & combo water skis", "Inflatable towable tubes - 1 & 2-person", "Full tow rope & handles included", "Crew-operated towing - always a spotter aboard", "Helmets & life jackets for all sizes provided"],
     modalImages: ["assets/Waterskiing.webp", "assets/Waterskiing1.jpg", "assets/Waterskiing2.jpg"],
   },
   {
@@ -586,7 +586,7 @@ const WATER_TOY_DETAILS: WaterToyDetail[] = [
     modalTitle: "Snorkel Sets & Paddle Boards",
     modalSubtitle: "Explore Above & Below the Surface",
     modalDesc: "Discover the vibrant underwater world of the Gulf Coast with premium snorkel sets, or glide across glassy morning water on a stand-up paddle board.",
-    modalFeatures: ["Multiple full snorkel sets — mask, fin & snorkel", "Sizes available for adults and children", "Stand-up paddle boards — wide & stable design", "Ideal at Shell Key, Egmont Key & Pass-A-Grille", "Crew assists with fitting and launch", "Perfect for calm-water anchorages & sunrise paddles"],
+    modalFeatures: ["Multiple full snorkel sets - mask, fin & snorkel", "Sizes available for adults and children", "Stand-up paddle boards - wide & stable design", "Ideal at Shell Key, Egmont Key & Pass-A-Grille", "Crew assists with fitting and launch", "Perfect for calm-water anchorages & sunrise paddles"],
     modalImages: ["assets/Snorkel.jpeg", "assets/Snorkel1.jpg", "assets/Snorkel2.webp"],
   },
 ];
@@ -688,7 +688,7 @@ const ENHANCED_CSS = `
     scroll-margin-top: 80px;
   }
 
-  /* ── Shimmer Text — FIX #11: use overflow hidden on wrapper ── */
+  /* ── Shimmer Text - FIX #11: use overflow hidden on wrapper ── */
   .shimmer-text {
     background: linear-gradient(90deg, #c9a227 0%, #c9a227 30%, #000000 45%, #c9a227 60%, #c9a227 100%);
     background-size: 250% auto;
@@ -864,15 +864,7 @@ const ENHANCED_CSS = `
     font-weight: 700;
     letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: #c9a227;
-  }
-  .section-eyebrow::before {
-    content: '';
-    display: block;
-    width: 32px;
-    height: 1.5px;
-    background: linear-gradient(90deg, #c9a227, #f5d76e);
-    flex-shrink: 0;
+    color: #111827;
   }
 
   /* ── Pricing card hover ── */
@@ -951,7 +943,7 @@ const ENHANCED_CSS = `
     border: 1px solid rgba(255,255,255,0.08) !important;
   }
 
-  /* FIX #13: Reviews text contrast — force dark text on light bg */
+  /* FIX #13: Reviews text contrast - force dark text on light bg */
   .review-card p, .review-card h5 {
     color: #1f1a18 !important;
   }
@@ -1149,7 +1141,7 @@ function SectionHeader({ eyebrow, title, italic, subtitle, center = false }:
         </motion.h2>
       </div>
       {subtitle && (
-        <motion.p className="text-sm text-white/50 mt-4 max-w-md"
+        <motion.p className="text-sm text-[#374151] mt-4 max-w-md"
           initial={{ opacity: 0, y: 12 }} animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 12 }}
           transition={{ duration: 0.7, delay: 0.25 }}>
           {subtitle}
@@ -1728,7 +1720,7 @@ function CharterHighlightsModal({ onClose }: { onClose: () => void }) {
               {[
                 { icon: MapPin, text: "Based in Saint Petersburg, perfectly located between Tampa and Sarasota", color: "#c9a227" },
                 { icon: Compass, text: "Unmatched flexibility with access to Gulf and Intercoastal routes", color: "#3b82f6" },
-                { icon: Ship, text: "Exceptionally rare 100ft yacht with shallow draft—access exclusive spots", color: "#14b8a6" },
+                { icon: Ship, text: "Exceptionally rare 100ft yacht with shallow draft-access exclusive spots", color: "#14b8a6" },
                 { icon: Sparkles, text: "Newly remodeled interior with crewed, concierge-level service", color: "#f43f5e" },
                 { icon: Navigation, text: "Convenient access from major airports and marinas", color: "#a855f7" },
               ].map((item, i) => (
@@ -1829,7 +1821,7 @@ function FlybridgeSection({ onTourClick }: { onTourClick: () => void }) {
               </motion.button>
             </motion.div>
 
-            {/* RIGHT VIDEO — FIX #3: no heavy shadow, clean border */}
+            {/* RIGHT VIDEO - FIX #3: no heavy shadow, clean border */}
             <motion.div initial={{ opacity: 0, x: 40 }} animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : 40 }} transition={{ duration: 0.8 }}>
               <div className="relative rounded-3xl overflow-hidden border border-white/20" style={{ aspectRatio: "16/10" }}>
                 {flyVideos.map((item, i) => (
@@ -1942,14 +1934,14 @@ function WaterToysSection() {
                   color: "#031126",
                 }}
               >
-                <span className="block text-white mix-blend-difference">
+                <span className="block" style={{ color: "#031126" }}>
                   Water Toys
                 </span>
 
                 <span
                   className="block"
                   style={{
-                    color: "#7d8495",
+                    color: "#334155",
                   }}
                 >
                   Included for Your
@@ -2685,7 +2677,7 @@ function CulinarySection() {
       titleItalic: "Spark Connection",
       titleLine2: "",
       description:
-        "Mixology isn't just about pouring drinks—it's about creating an experience where every sip tells a story.",
+        "Mixology isn't just about pouring drinks-it's about creating an experience where every sip tells a story.",
       mainImgs: [
         "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&q=80&w=500",
         "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=500",
@@ -3001,7 +2993,7 @@ function DestinationsSection() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-end mb-12">
             <SectionHeader eyebrow="Gulf Coast Destinations" title="Popular Day Charter" italic="Destinations" />
             <p className="text-sm leading-relaxed lg:text-right max-w-sm lg:ml-auto" style={{ color: "#6b7280" }}>
-              Whether you're after nature, history, or a waterfront lunch stop — we'll get you there in style.
+              Whether you're after nature, history, or a waterfront lunch stop - we'll get you there in style.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
@@ -3108,14 +3100,14 @@ function DestinationsSection() {
                   </div>
                   <div className="absolute bottom-4 left-5 z-10 pr-4">
                     <h3 className="font-serif text-lg text-white leading-tight drop-shadow-lg dest-overlay-title" style={{ color: "#fff" }}>
-                      {dest.name.split("—")[0].trim()}
+                      {dest.name.split("-")[0].trim()}
                     </h3>
-                    {dest.name.includes("—") && (
+                    {dest.name.includes("-") && (
                       <p
                         className="text-[10px] font-bold uppercase tracking-widest mt-0.5 dest-overlay-subtitle"
                         style={{ color: "#fff" }}
                       >
-                        {dest.name.split("—")[1].trim()}
+                        {dest.name.split("-")[1].trim()}
                       </p>
                     )}
                   </div>
@@ -3140,7 +3132,7 @@ function DestinationsSection() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-end mb-12">
             <SectionHeader eyebrow="Extended Stays" title="Overnight Yacht" italic="Destinations" />
             <p className="text-sm leading-relaxed lg:text-right max-w-sm lg:ml-auto" style={{ color: "#6b7280" }}>
-              Extend your voyage — marina accommodations at top-rated waterfront resorts await.
+              Extend your voyage - marina accommodations at top-rated waterfront resorts await.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
@@ -3301,16 +3293,16 @@ function MechanicalSection() {
     { label: "Engine Hours", value: "Incredibly Low", icon: Gauge },
     { label: "Fuel Capacity", value: "Large reserve tanks", icon: Fuel },
     { label: "Range", value: "Tampa to Key West", icon: MapPin },
-    { label: "Generator", value: "Dual — 6,250 hrs each", icon: Activity },
+    { label: "Generator", value: "Dual - 6,250 hrs each", icon: Activity },
     { label: "Air Conditioning", value: "Chilled water 169,500 BTU", icon: Wind },
     { label: "Navigation", value: "Full electronics suite", icon: Settings },
   ];
 
   const systems = [
-    { title: "Propulsion", icon: Gauge, items: ["Twin diesel inboard engines","Shaft drive — low engine hours","Bow thruster for precision docking","Hydraulic stabilizers underway","Anti-fouling bottom paint (2022)"] },
-    { title: "Electronics & Navigation", icon: Settings, items: ["Garmin / Furuno chart plotter suite","Radar — open array","VHF radios (multiple)","GPS & AIS transponder","Satellite TV & high-speed WiFi","Full anchor windlass system"] },
-    { title: "Safety Systems", icon: Activity, items: ["Life rafts — USCG certified","EPIRB & flares aboard","Fire suppression — engine room","Bilge pump system — automatic","CO detectors throughout","First aid & medical kit"] },
-    { title: "Onboard Systems", icon: Wrench, items: ["Dual generators — full power at anchor","Watermaker / reverse osmosis — 1,500 gal/day","Full HVAC — all staterooms","Premium sound system","Washer / dryer aboard","Icemaker & commercial refrigeration"] },
+    { title: "Propulsion", icon: Gauge, items: ["Twin diesel inboard engines","Shaft drive - low engine hours","Bow thruster for precision docking","Hydraulic stabilizers underway","Anti-fouling bottom paint (2022)"] },
+    { title: "Electronics & Navigation", icon: Settings, items: ["Garmin / Furuno chart plotter suite","Radar - open array","VHF radios (multiple)","GPS & AIS transponder","Satellite TV & high-speed WiFi","Full anchor windlass system"] },
+    { title: "Safety Systems", icon: Activity, items: ["Life rafts - USCG certified","EPIRB & flares aboard","Fire suppression - engine room","Bilge pump system - automatic","CO detectors throughout","First aid & medical kit"] },
+    { title: "Onboard Systems", icon: Wrench, items: ["Dual generators - full power at anchor","Watermaker / reverse osmosis - 1,500 gal/day","Full HVAC - all staterooms","Premium sound system","Washer / dryer aboard","Icemaker & commercial refrigeration"] },
   ];
 
   const visibleSpecs = showAllSpecs ? mechanicalSpecs : mechanicalSpecs.slice(0, 10);
@@ -3411,9 +3403,9 @@ const PRIVATE_EXP_DATA = [
 const CORP_VENUE_FEATURES = ["Elegant indoor and outdoor spaces","Open-air flybridge with Jacuzzi, lounge seating, and wet bar","12-guest maximum capacity (ideal for small groups)","Catered dining or onboard chef service","High-speed Wi-Fi and media entertainment","Discreet, professional crew support"];
 const CORP_WHAT_TO_EXPECT = [
   { icon: Shield, title: "Private and Professional Environment", desc: "Serendipity transforms business functions into elevated experiences. From casual networking cruises to formal client receptions, we provide an unmatched charter experience.", color: "#c9a227" },
-  { icon: Users, title: "All-Inclusive, Fully Staffed", desc: "Our experienced crew handles every detail—so you and your guests can stay present and productive.", color: "#3b82f6" },
+  { icon: Users, title: "All-Inclusive, Fully Staffed", desc: "Our experienced crew handles every detail-so you and your guests can stay present and productive.", color: "#3b82f6" },
   { icon: Wifi, title: "Tech-Ready Spaces", desc: "We will work with you to prepare for presentations. Connect your own media for video content and background music.", color: "#14b8a6" },
-  { icon: Clock, title: "Flexible Duration", desc: "Book a 2- to 4-hour cruise, a half-day strategy session, or a sunset networking cocktail hour—we'll customize the itinerary to your needs.", color: "#a855f7" },
+  { icon: Clock, title: "Flexible Duration", desc: "Book a 2- to 4-hour cruise, a half-day strategy session, or a sunset networking cocktail hour-we'll customize the itinerary to your needs.", color: "#a855f7" },
 ];
 const CORP_STATS = [{ val: 94, suffix: " ft", label: "Yacht Length" },{ val: 12, suffix: "", label: "Max Guests" },{ val: 4, suffix: "", label: "Private Suites" },{ val: 25, suffix: "+", label: "Charter Guests" }];
 
@@ -3471,7 +3463,7 @@ function PrivateSection() {
         );
       })}
 
-      {/* FIX #12: Contact CTA strip — repositioned as clean call-to-action, not off-positioned */}
+      {/* FIX #12: Contact CTA strip - repositioned as clean call-to-action, not off-positioned */}
       <div className="px-4 md:px-8 lg:px-16 py-12 md:py-16 relative" style={{ background: "linear-gradient(135deg, rgba(249,237,240,0.95) 0%, rgba(244,232,239,0.95) 100%)", borderTop: "1px solid rgba(31,26,24,0.06)" }}>
         <AuroraBackground style={{ opacity: 0.2 }} />
         <div className="max-w-3xl mx-auto relative z-10 text-center">
@@ -3542,7 +3534,7 @@ function CorporateSection() {
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.7 }}
               className="col-span-2 p-5 rounded-2xl flex items-center gap-4" style={{ background: "rgba(201,162,39,0.06)", border: "1px solid rgba(201,162,39,0.2)" }}>
               <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0" style={{ background: "rgba(201,162,39,0.15)" }}><MapPin className="w-4 h-4 text-gold" /></div>
-              <div><p className="text-[9px] uppercase tracking-[2px] text-gold/60 font-bold mb-0.5">Home Port</p><p className="text-sm" style={{ color: "#374151" }}>Maximo Marina, St. Petersburg, FL — <span style={{ color: "#9ca3af" }} className="text-xs">between Tampa & Sarasota</span></p></div>
+              <div><p className="text-[9px] uppercase tracking-[2px] text-gold/60 font-bold mb-0.5">Home Port</p><p className="text-sm" style={{ color: "#374151" }}>Maximo Marina, St. Petersburg, FL - <span style={{ color: "#9ca3af" }} className="text-xs">between Tampa & Sarasota</span></p></div>
             </motion.div>
           </motion.div>
         </div>
@@ -3902,7 +3894,7 @@ function InquirySection({
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [eventType, setEventType] = useState("Day Trip — $10,000");
+  const [eventType, setEventType] = useState("Day Trip - $10,000");
   const [message, setMessage] = useState("");
   const [focused, setFocused] = useState<string | null>(null);
 
@@ -3911,7 +3903,7 @@ function InquirySection({
     setLoading(true);
 
     const subject = encodeURIComponent(
-      `Charter Inquiry — ${eventType}`
+      `Charter Inquiry - ${eventType}`
     );
 
     const body = encodeURIComponent(
@@ -3938,7 +3930,7 @@ function InquirySection({
       setLastName("");
       setEmail("");
       setMessage("");
-      setEventType("Day Trip — $10,000");
+      setEventType("Day Trip - $10,000");
     }, 600);
   };
 
@@ -4173,12 +4165,12 @@ function InquirySection({
                   style={inputStyle("select")}
                 >
                   {[
-                    "Day Trip — $10,000",
-                    "Weekend Getaway — $20,000",
-                    "Full Week — $35,000",
-                    "Corporate Events — $15,000",
-                    "Birthdays & Anniversaries — $7,500",
-                    "Culinary & Wine Cheese — $7,500",
+                    "Day Trip - $10,000",
+                    "Weekend Getaway - $20,000",
+                    "Full Week - $35,000",
+                    "Corporate Events - $15,000",
+                    "Birthdays & Anniversaries - $7,500",
+                    "Culinary & Wine Cheese - $7,500",
                     "Sunset Cruise (Custom)",
                     "General Question",
                   ].map((o) => (
@@ -4315,10 +4307,10 @@ function Footer() {
             {
               title: "Charter",
               links: [
-                ["Day Trip — $10,000", "/book"],
-                ["Weekend — $20,000", "/book"],
-                ["Full Week — $35,000", "/book"],
-                ["Corporate — $15,000", "/book"],
+                ["Day Trip - $10,000", "/book"],
+                ["Weekend - $20,000", "/book"],
+                ["Full Week - $35,000", "/book"],
+                ["Corporate - $15,000", "/book"],
               ],
             },
             {
@@ -4611,7 +4603,7 @@ export default function App() {
                 The Collection
               </h2>
               <p className="text-white/40 text-xs">
-                Serendipity — 94' Lazzara Hardtop Motor Yacht
+                Serendipity - 94' Lazzara Hardtop Motor Yacht
               </p>
             </div>
 

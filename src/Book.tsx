@@ -1,7 +1,7 @@
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
- * Book.tsx — Serendipity Yacht Charter (Enhanced)
+ * Book.tsx - Serendipity Yacht Charter (Enhanced)
  */
 
 import React, { useState, useEffect } from "react";
@@ -364,7 +364,7 @@ function useInputStyle(focused: string | null) {
     border: focused === fieldName ? "2px solid #c9a227" : "1.5px solid rgba(201,162,39,0.15)",
     borderRadius: 12, padding: "12px 16px", fontSize: 13,
     color: "#5a3a00", outline: "none", transition: "all 0.2s ease",
-    fontFamily: "'DM Sans', sans-serif", boxSizing: "border-box",
+    fontFamily: "Manrope, sans-serif", boxSizing: "border-box",
     boxShadow: focused === fieldName ? "0 0 0 4px rgba(201,162,39,0.08)" : "none",
   });
 }
@@ -445,9 +445,9 @@ export default function BookPage() {
   };
 
   return (
-    <div style={{ minHeight: "100vh", fontFamily: "'DM Sans', sans-serif", color: "#5a3a00", position: "relative" }}>
+    <div style={{ minHeight: "100vh", fontFamily: "Manrope, sans-serif", color: "#5a3a00", position: "relative" }}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,400;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,400;1,700&family=Manrope:wght@300;400;500;600;700&display=swap');
         * { box-sizing: border-box; }
         input::placeholder, textarea::placeholder { color: #b8a660; }
         select option { color: #5a3a00; background: white; }
@@ -644,7 +644,7 @@ export default function BookPage() {
                     <>
                       <p style={{ fontSize: 10, color: "#b8a660", textTransform: "uppercase", letterSpacing: "1.5px", fontWeight: 700, marginBottom: 3 }}>Selected</p>
                       <p style={{ fontFamily: "'Playfair Display', serif", fontSize: 16, color: "#5a3a00", fontWeight: 700 }}>
-                        {selected.name} — <span style={{ color: "#c9a227" }}>{selected.price}</span>
+                        {selected.name} - <span style={{ color: "#c9a227" }}>{selected.price}</span>
                       </p>
                     </>
                   ) : (
@@ -828,7 +828,7 @@ export default function BookPage() {
                       <>
                         <p style={{ fontSize: 10, color: "#b8a660", textTransform: "uppercase", letterSpacing: "1.5px", fontWeight: 700, marginBottom: 3 }}>Package</p>
                         <p style={{ fontFamily: "'Playfair Display', serif", fontSize: 16, color: "#5a3a00", fontWeight: 700 }}>
-                          {selected.name} — <span style={{ color: "#c9a227" }}>{selected.price}</span>
+                          {selected.name} - <span style={{ color: "#c9a227" }}>{selected.price}</span>
                         </p>
                       </>
                     )}
@@ -893,7 +893,7 @@ export default function BookPage() {
                       </div>
                       <div>
                         <p style={{ fontWeight: 800, fontSize: 14, color: "#5a3a00" }}>{selected?.name}</p>
-                        <p style={{ fontSize: 10, color: "#8a7840", marginTop: 2 }}>Serendipity — 94' Lazzara</p>
+                        <p style={{ fontSize: 10, color: "#8a7840", marginTop: 2 }}>Serendipity - 94' Lazzara</p>
                       </div>
                     </div>
 

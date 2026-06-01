@@ -1,7 +1,7 @@
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
- * Reservation Page — Serendipity Yacht Charter (Enhanced)
+ * Reservation Page - Serendipity Yacht Charter (Enhanced)
  */
 
 import React, { useState, useEffect, useRef } from "react";
@@ -261,7 +261,7 @@ export default function ReservationPage() {
     border: focusedField === fieldName ? "2px solid #c9a227" : "1.5px solid rgba(201,162,39,0.15)",
     borderRadius: 12, padding: "12px 16px", fontSize: 13, color: "#5a3a00",
     outline: "none", transition: "all 0.2s ease", boxSizing: "border-box" as const,
-    fontFamily: "'DM Sans', sans-serif",
+    fontFamily: "Manrope, sans-serif",
     boxShadow: focusedField === fieldName ? "0 0 0 4px rgba(201,162,39,0.08)" : "none",
   });
 
@@ -281,10 +281,10 @@ export default function ReservationPage() {
   };
 
   return (
-    <div style={{ minHeight: "100vh", fontFamily: "'DM Sans', sans-serif", color: "#5a3a00", position: "relative" }}>
+    <div style={{ minHeight: "100vh", fontFamily: "Manrope, sans-serif", color: "#5a3a00", position: "relative" }}>
       {/* Google Fonts */}
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,400;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,400;1,700&family=Manrope:wght@300;400;500;600;700&display=swap');
         * { box-sizing: border-box; }
         input::placeholder, textarea::placeholder { color: #b8a660; }
         input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(0.5); cursor: pointer; }
@@ -355,7 +355,7 @@ export default function ReservationPage() {
                 </em>
               </h1>
               <p style={{ fontSize: 14, color: "rgba(255,255,255,0.75)", maxWidth: 380, lineHeight: 1.7 }}>
-                Set sail aboard the Serendipity Motor Yacht — tailored for elegance, comfort, and unforgettable memories.
+                Set sail aboard the Serendipity Motor Yacht - tailored for elegance, comfort, and unforgettable memories.
               </p>
             </motion.div>
           </div>
@@ -583,7 +583,7 @@ export default function ReservationPage() {
                 Your Voyage<br /><em style={{ color: "#f0c94a" }}>Awaits</em>
               </h3>
               <p style={{ fontSize: 13, color: "rgba(255,255,255,0.6)", maxWidth: 360, lineHeight: 1.7 }}>
-                From sunrise cruises to weeklong escapes — every charter is tailored to you.
+                From sunrise cruises to weeklong escapes - every charter is tailored to you.
               </p>
             </div>
             <motion.a
@@ -734,17 +734,17 @@ export default function ReservationPage() {
                       <option value="">Select…</option>
                       {activeTab === "day" ? (
                         <>
-                          <option value="4">4 Hours — $2,500</option>
-                          <option value="6">6 Hours — $3,500</option>
-                          <option value="10">10 Hours — $7,500</option>
+                          <option value="4">4 Hours - $2,500</option>
+                          <option value="6">6 Hours - $3,500</option>
+                          <option value="10">10 Hours - $7,500</option>
                         </>
                       ) : (
                         <>
-                          <option value="2d1n">2 Days / 1 Night — $10,000</option>
-                          <option value="3d2n">3 Days / 2 Nights — $20,000</option>
-                          <option value="5d4n">5 Days / 4 Nights — $30,000</option>
-                          <option value="6d5n">6 Days / 5 Nights — $35,000</option>
-                          <option value="7d6n">7 Days / 6 Nights — $38,000</option>
+                          <option value="2d1n">2 Days / 1 Night - $10,000</option>
+                          <option value="3d2n">3 Days / 2 Nights - $20,000</option>
+                          <option value="5d4n">5 Days / 4 Nights - $30,000</option>
+                          <option value="6d5n">6 Days / 5 Nights - $35,000</option>
+                          <option value="7d6n">7 Days / 6 Nights - $38,000</option>
                         </>
                       )}
                     </select>
@@ -763,9 +763,9 @@ export default function ReservationPage() {
                     style={{ ...inputStyle("crew"), appearance: "none", cursor: "pointer", paddingRight: 32 }}
                   >
                     <option value="">Select crew option…</option>
-                    <option value="crew">Crew Member — $250/day</option>
-                    <option value="bartender">Bartender — $200/day</option>
-                    <option value="chef">Private Chef — Negotiated directly</option>
+                    <option value="crew">Crew Member - $250/day</option>
+                    <option value="bartender">Bartender - $200/day</option>
+                    <option value="chef">Private Chef - Negotiated directly</option>
                     <option value="full">Full Crew Package</option>
                   </select>
                   <ChevronDown size={14} style={{ position: "absolute", right: 12, top: "50%", transform: "translateY(-50%)", color: "#b8a660", pointerEvents: "none" }} />

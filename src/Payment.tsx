@@ -25,10 +25,10 @@ const NAVY = TEXT_COLOR;
 const ACCENT_GOLD = "#c9a227";
 const RED = "#c0392b";
 const GREEN = "#2e7d32";
-const FONT = '"Fira Sans", "Roboto Condensed", Raleway, sans-serif';
+const FONT = 'Manrope, sans-serif';
 
 const base: React.CSSProperties = {
-  fontFamily: '"Fira Sans", "Roboto Condensed", Raleway, sans-serif',
+  fontFamily: 'Manrope, sans-serif',
   fontSize: 15,
   color: TEXT_COLOR,
   background: "#f9edf0",
@@ -131,7 +131,7 @@ function CardIcons() {
       </div>
       <div style={{ width: 52, height: 33, border: "1px solid #ddd", borderRadius: 4, background: "#2557d6", display: "flex", alignItems: "center", justifyContent: "center" }}>
         <svg viewBox="0 0 200 80" width="48" xmlns="http://www.w3.org/2000/svg">
-          <text x="10" y="58" fontSize="52" fontWeight="bold" fontFamily="Arial" fill="white" letterSpacing="-2">AMEX</text>
+          <text x="10" y="58" fontSize="52" fontWeight="bold" fontFamily="Manrope, sans-serif" fill="white" letterSpacing="-2">AMEX</text>
         </svg>
       </div>
     </div>
@@ -208,7 +208,7 @@ function SuccessScreen({
             />
           </svg>
         </motion.div>
-        <h2 style={{ fontFamily: '"Raleway", sans-serif', fontSize: 26, fontWeight: 700, color: NAVY, margin: "0 0 8px" }}>
+        <h2 style={{ fontFamily: 'Manrope, sans-serif', fontSize: 26, fontWeight: 700, color: NAVY, margin: "0 0 8px" }}>
           Payment Successful
         </h2>
         <p style={{ fontSize: 14, color: "#4a4140", margin: 0 }}>
@@ -237,7 +237,7 @@ function SuccessScreen({
       <div style={{ borderTop: "1px solid #eee", borderBottom: "1px solid #eee", padding: "18px 0", marginBottom: 24 }}>
         {[
           { label: "Event Type", value: eventType },
-          { label: "Guest Name", value: name || "—" },
+          { label: "Guest Name", value: name || "-" },
           { label: "Payment Method", value: payMethod === "cc" ? "Credit Card" : "ACH (eCheck)" },
           ...(invoice ? [{ label: "Invoice #", value: invoice }] : []),
           { label: "Base Amount", value: `$${parseFloat(amount || "0").toFixed(2)}` },
@@ -414,9 +414,9 @@ export default function PaymentPage() {
 
         {/* ══ TITLE ROW ══ */}
         <div style={{ display: "grid", gridTemplateColumns: "1fr auto", alignItems: "flex-start", marginBottom: 28 }}>
-          <h1 style={{ fontFamily: '"Raleway", sans-serif', fontSize: 32, fontWeight: 700, color: NAVY, margin: 0, lineHeight: 1.25, display: "flex", alignItems: "flex-start", gap: 10 }}>
+          <h1 style={{ fontFamily: 'Manrope, sans-serif', fontSize: 32, fontWeight: 700, color: NAVY, margin: 0, lineHeight: 1.25, display: "flex", alignItems: "flex-start", gap: 10 }}>
             <span style={{ fontSize: 26, marginTop: 3 }}>🔒</span>
-            Serendipity Yacht Charter — Secure Payment
+            Serendipity Yacht Charter - Secure Payment
           </h1>
           <div style={{ textAlign: "center", minWidth: 120 }}>
             <img
@@ -521,7 +521,7 @@ export default function PaymentPage() {
 
             {/* ── LEFT: Payment Info ── */}
             <div style={{ paddingRight: 32 }}>
-              <h3 style={{ fontFamily: '"Fira Sans", sans-serif', fontSize: 18, color: NAVY, margin: "0 0 10px", fontWeight: 400 }}>
+              <h3 style={{ fontFamily: 'Manrope, sans-serif', fontSize: 18, color: NAVY, margin: "0 0 10px", fontWeight: 400 }}>
                 Payment Info
               </h3>
               <p style={{ fontSize: 14, color: "#6b7280", margin: "0 0 10px", borderBottom: "1px solid #e5e7eb", paddingBottom: 6 }}>
@@ -602,7 +602,7 @@ export default function PaymentPage() {
                 ) : (
                   <motion.div key="ach" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }}>
                     <div style={{ background: "#f7eef1", border: "1px solid #e9d8dc", borderRadius: 4, padding: "10px 14px", marginBottom: 14, fontSize: 13, color: "#2e7d32" }}>
-                      ✓ No surcharge on ACH payments — save {payMethod === "ach" ? `$${(baseNum * 0.025).toFixed(2)}` : ""} vs. credit card
+                      ✓ No surcharge on ACH payments - save {payMethod === "ach" ? `$${(baseNum * 0.025).toFixed(2)}` : ""} vs. credit card
                     </div>
                     <div style={payRow}>
                       <label style={payLabel} htmlFor="routingNumber">Routing Number {req}</label>
@@ -623,7 +623,7 @@ export default function PaymentPage() {
 
             {/* ── RIGHT: Billing Info ── */}
             <div>
-              <h3 style={{ fontFamily: '"Fira Sans", sans-serif', fontSize: 18, color: NAVY, margin: "0 0 14px", fontWeight: 400 }}>
+              <h3 style={{ fontFamily: 'Manrope, sans-serif', fontSize: 18, color: NAVY, margin: "0 0 14px", fontWeight: 400 }}>
                 Billing Info
               </h3>
 
@@ -781,7 +781,7 @@ export default function PaymentPage() {
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, color: "#888" }}>
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1a6 6 0 1 0 0 12A6 6 0 0 0 7 1zM7 4v3.5l2 1" stroke="#888" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-              {payMethod === "cc" ? "Secured by CardPointe" : "ACH — No surcharge"}
+              {payMethod === "cc" ? "Secured by CardPointe" : "ACH - No surcharge"}
             </div>
           </div>
 
@@ -825,7 +825,7 @@ export default function PaymentPage() {
                     <path d="M1 8h16" stroke="white" strokeWidth="1.5"/>
                     <path d="M5 12h2M9 12h4" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
                   </svg>
-                  Submit Payment — ${grandStr}
+                  Submit Payment - ${grandStr}
                 </>
               )}
             </motion.button>
