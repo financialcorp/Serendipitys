@@ -2413,7 +2413,7 @@ function Hero({ heroIdx, setHeroIdx, openAvail, openVideo, openRoute }: {
         <motion.div style={{ y: textY, opacity }} className="hidden lg:flex relative h-full w-[70%] mx-[15%] flex-col justify-end pb-32 z-10">
           <AnimatePresence mode="wait">
             <motion.div key={heroIdx + "desktop"} initial={{ opacity: 0, y: 35 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -18 }} transition={{ duration: 1.2 }} className="max-w-4xl">
-              <motion.div className="flex items-center gap-3 mb-6"><div className="w-8 h-[1px] bg-gold" /><span className="text-xs font-bold tracking-[2.5px] uppercase text-gold">{slides[heroIdx].tag.replace(/^-+\s*/, "")}</span></motion.div>
+              <motion.div className="flex items-center gap-3 mb-6"><span className="text-xs font-bold tracking-[2.5px] uppercase text-gold">{slides[heroIdx].tag.replace(/^-+\s*/, "")}</span></motion.div>
               <h1 className="text-[58px] lg:text-[72px] font-serif leading-[1.06] mb-6">{slides[heroIdx].line1}<em className="block text-gold italic">{slides[heroIdx].line2}</em></h1>
               <p className="text-xl mb-10 max-w-lg" style={{ color: "#fff" }}>{slides[heroIdx].desc}</p>
               <div className="flex gap-6 items-center">
