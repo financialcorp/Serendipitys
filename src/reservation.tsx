@@ -88,7 +88,7 @@ function OceanBackground() {
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
       <div style={{
         position: "absolute", inset: 0,
-        background: "linear-gradient(160deg, #fdf6ec 0%, #fef9e7 30%, #fdf2d0 70%, #fef5d4 100%)"
+        background: "linear-gradient(160deg, #f9edf0 0%, #f9edf0 30%, #f9edf0 70%, #f9edf0 100%)"
       }} />
       {/* Animated wave blobs */}
       <motion.div
@@ -281,7 +281,7 @@ export default function ReservationPage() {
   };
 
   return (
-    <div style={{ minHeight: "100vh", fontFamily: "Manrope, sans-serif", color: "#5a3a00", position: "relative" }}>
+    <div style={{ minHeight: "100vh", fontFamily: "Manrope, sans-serif", color: "#111827", backgroundColor: "#f9edf0", position: "relative" }}>
       {/* Google Fonts */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,400;1,700&family=Manrope:wght@300;400;500;600;700&display=swap');
