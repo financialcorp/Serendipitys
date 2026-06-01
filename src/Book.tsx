@@ -136,7 +136,7 @@ function navigateToPayment(data: { name: string; email: string; eventType: strin
 function OceanBackground() {
   return (
     <div style={{ position: "fixed", inset: 0, pointerEvents: "none", zIndex: 0, overflow: "hidden" }}>
-      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(160deg, #fdf6ec 0%, #fef9e7 35%, #fdf2d0 70%, #fef5d4 100%)" }} />
+      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(160deg, #f9edf0 0%, #f9edf0 35%, #f9edf0 70%, #f9edf0 100%)" }} />
       <motion.div
         animate={{ x: [0, 50, 0], y: [0, -40, 0] }}
         transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
@@ -445,7 +445,7 @@ export default function BookPage() {
   };
 
   return (
-    <div style={{ minHeight: "100vh", fontFamily: "Manrope, sans-serif", color: "#5a3a00", position: "relative" }}>
+    <div style={{ minHeight: "100vh", fontFamily: "Manrope, sans-serif", color: "#111827", backgroundColor: "#f9edf0", position: "relative" }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,400;1,700&family=Manrope:wght@300;400;500;600;700&display=swap');
         * { box-sizing: border-box; }
